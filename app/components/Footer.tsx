@@ -73,10 +73,7 @@ export default function Footer() {
           © {new Date().getFullYear()}{" "}
           <span className="text-white font-semibold tracking-wide">Amine Rachidi</span>
           {" · "}Tous droits réservés.
-          <br />
-          <span className="text-[0.75rem] text-slate-600 mt-1 block">
-            Conçu & développé avec Next.js · Tailwind CSS
-          </span>
+
         </p>
       </div>
     </footer>

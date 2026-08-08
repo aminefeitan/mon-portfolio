@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowRight, Download, Send } from "lucide-react";
-import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -16,7 +14,7 @@ export default function Hero() {
 
       <div className="max-w-[1100px] mx-auto px-8 relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          
+
           {/* Left Text */}
           <div>
             {/* Eyebrow */}
@@ -29,31 +27,31 @@ export default function Hero() {
 
             {/* Name */}
             <h1 className="animate-fade-up delay-100 text-[clamp(3.5rem,8vw,6.5rem)] font-black leading-[1.05] tracking-tight mb-4 text-white">
-              Amine Rachidi
+              Amine RACHIDI
             </h1>
 
             {/* Role */}
             <h2 className="animate-fade-up delay-200 text-[clamp(1.2rem,2.5vw,1.8rem)] text-indigo-400 font-semibold mb-6 leading-relaxed">
-              Ingénieur Logiciel Full Stack
+              Élève en Ingénieurie Logicielle
             </h2>
 
             {/* Description */}
             <p className="animate-fade-up delay-300 text-[1.1rem] text-slate-400 max-w-[580px] leading-[1.8] mb-10">
-              Je conçois et développe des applications web et mobiles complètes avec des
-              architectures modernes. Passionné par l&apos;analyse territoriale,
-              les plateformes numériques et les outils d&apos;aide à la décision.
+              Élève en 2ème année du cycle ingénieur, passionné par le
+              développement web, l&apos;analyse territoriale, les plateformes
+              numériques et les outils d&apos;aide à la décision.
             </p>
 
             {/* CTAs */}
             <div className="animate-fade-up delay-400 flex gap-4 flex-wrap">
-              <Link href="#projects" className="btn-primary group">
+              <a href="#projects" className="btn-primary group">
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 Voir mes projets
-              </Link>
-              <Link href="#contact" className="btn-secondary group">
+              </a>
+              <a href="#contact" className="btn-secondary group">
                 <Send className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
                 Me contacter
-              </Link>
+              </a>
               <a
                 href="/cv-amine-rachidi.pdf"
                 target="_blank"
@@ -75,7 +73,7 @@ export default function Hero() {
                 10+
               </span>
               <span className="text-lg text-slate-300 font-bold uppercase tracking-widest">
-                Technologies Maîtrisées
+                Technologies Utilisées
               </span>
             </div>
 
@@ -83,11 +81,11 @@ export default function Hero() {
             <div className="grid grid-cols-2 gap-6">
               <div className="glass p-8 flex flex-col items-center justify-center text-center group">
                 <span className="text-4xl font-black text-white mb-2 group-hover:text-indigo-300 transition-colors">5+</span>
-                <span className="text-xs text-slate-400 uppercase tracking-widest font-semibold">Projets<br/>Réalisés</span>
+                <span className="text-xs text-slate-400 uppercase tracking-widest font-semibold">Projets<br />Académiques</span>
               </div>
               <div className="glass p-8 flex flex-col items-center justify-center text-center group">
-                <span className="text-4xl font-black text-white mb-2 group-hover:text-indigo-300 transition-colors">3+</span>
-                <span className="text-xs text-slate-400 uppercase tracking-widest font-semibold">Années<br/>Expérience</span>
+                <span className="text-4xl font-black text-white mb-2 group-hover:text-indigo-300 transition-colors">2ème</span>
+                <span className="text-xs text-slate-400 uppercase tracking-widest font-semibold">Année<br />Cycle Ingénieur</span>
               </div>
             </div>
           </div>
@@ -97,9 +95,9 @@ export default function Hero() {
         {/* Stats row for Mobile only */}
         <div className="lg:hidden animate-fade-up delay-400 flex gap-8 mt-16 flex-wrap">
           {[
-            { value: "5+", label: "Projets réalisés" },
-            { value: "3+", label: "Ans d'expérience" },
-            { value: "10+", label: "Technologies maîtrisées" },
+            { value: "5+", label: "Projets académiques" },
+            { value: "2ème", label: "Année cycle ingénieur" },
+            { value: "10+", label: "Technologies utilisées" },
           ].map((stat) => (
             <div key={stat.label}>
               <div className="text-[2rem] font-extrabold text-white leading-none mb-1">

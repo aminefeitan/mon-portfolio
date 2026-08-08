@@ -27,37 +27,31 @@ export default function About() {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-8 items-start">
-          
+
           {/* Main Content Area - Span 7 */}
           <div className="lg:col-span-7 flex flex-col gap-8 animate-fade-up delay-100">
-            
+
             {/* Main Bio Card */}
             <div className="glass p-10 group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-indigo-500/20 to-transparent rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
+
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500/20 transition-colors duration-300">
                   <Code2 className="w-6 h-6" />
                 </div>
                 <h3 className="text-2xl font-bold text-white">Mon Parcours</h3>
               </div>
-              
+
               <div className="text-[1.05rem] text-slate-400 leading-relaxed space-y-4">
                 <p>
-                  Ingénieur Logiciel Full Stack, je me spécialise dans <span className="text-white font-semibold">l&apos;analyse, la conception, la modélisation et le développement</span> d&apos;applications web complètes et robustes.
+                  Élève en 2ème année du cycle ingénieur à l&apos;<span className="text-indigo-400 font-semibold">ENSIASD Taroudannt</span>, je m&apos;intéresse à <span className="text-white font-semibold">l&apos;analyse, la conception, la modélisation et le développement</span> d&apos;applications web.
                 </p>
                 <p>
-                  Je conçois des solutions basées sur des technologies modernes comme <span className="text-indigo-400 font-semibold">Java Spring Boot</span>, <span className="text-indigo-400 font-semibold">React</span> et <span className="text-indigo-400 font-semibold">Next.js</span>. Mes projets couvrent divers domaines allant de l&apos;analyse territoriale et la gestion d&apos;événements, jusqu&apos;aux outils d&apos;aide à la décision.
+                  Je travaille avec des technologies comme <span className="text-indigo-400 font-semibold">Java Spring Boot</span>, <span className="text-indigo-400 font-semibold">React</span> et <span className="text-indigo-400 font-semibold">Next.js</span>. Mes projets académiques couvrent divers domaines allant de l&apos;analyse territoriale et la gestion d&apos;événements, jusqu&apos;aux outils d&apos;aide à la décision.
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-3 mt-8">
-                {["Maroc 🇲🇦", "Full Stack", "Disponible", "Agile"].map((chip) => (
-                  <span key={chip} className="tech-badge">
-                    {chip}
-                  </span>
-                ))}
-              </div>
+
             </div>
 
             {/* Stats Row */}
@@ -66,15 +60,15 @@ export default function About() {
                 <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4">
                   <Briefcase className="w-6 h-6" />
                 </div>
-                <span className="text-2xl font-black text-white mb-1">Expertise</span>
-                <span className="text-sm text-slate-400">Projets Métiers & SI</span>
+                <span className="text-2xl font-black text-white mb-1">Formation</span>
+                <span className="text-sm text-slate-400">Projets Académiques</span>
               </div>
               <div className="glass p-6 flex flex-col items-center justify-center text-center">
                 <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4">
                   <GraduationCap className="w-6 h-6" />
                 </div>
-                <span className="text-2xl font-black text-white mb-1">Ingénieur</span>
-                <span className="text-sm text-slate-400">Diplômé en SI</span>
+                <span className="text-2xl font-black text-white mb-1">ENSIASD</span>
+                <span className="text-sm text-slate-400">Taroudannt · 2ème Année</span>
               </div>
             </div>
 
@@ -87,9 +81,9 @@ export default function About() {
                 <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
                   <Award className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-white">Domaines d&apos;Expertise</h3>
+                <h3 className="text-xl font-bold text-white">Centres d&apos;Intérêt</h3>
               </div>
-              
+
               <div className="flex flex-col gap-4 flex-grow justify-center">
                 {interests.map((item, i) => (
                   <div
