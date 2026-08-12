@@ -591,3 +591,107 @@ body::before {
     transform: translateY(0) scale(1);
   }
 }
+
+/* ─── Mobile Responsive Enhancements ──────────────────────────── */
+
+/* Touch devices: remove hover lift on glass cards to prevent sticky states */
+@media (hover: none) and (pointer: coarse) {
+  .glass:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .glass:active {
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.1);
+  }
+}
+
+/* Small screens */
+@media (max-width: 767px) {
+  /* Section titles */
+  .section-title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    margin-bottom: 2rem;
+  }
+  .section-title::after {
+    width: 40px;
+    height: 3px;
+    margin-top: 10px;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    border-radius: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+  .btn-secondary {
+    padding: 11px 24px;
+    font-size: 0.9rem;
+    border-radius: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Form inputs */
+  .form-input {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+    border-radius: 12px;
+  }
+
+  /* Contact submit */
+  .contact-submit-btn {
+    padding: 13px 24px;
+    font-size: 0.9rem;
+    border-radius: 12px;
+  }
+
+  /* Glass cards - reduced border radius on mobile */
+  .glass {
+    border-radius: 16px;
+  }
+
+  /* Video modal fullscreen on mobile */
+  .video-modal-overlay {
+    padding: 12px;
+  }
+  .video-modal-content {
+    border-radius: 16px;
+    max-height: 90dvh;
+  }
+  .video-modal-header {
+    padding: 12px 16px;
+  }
+  .video-modal-header h3 {
+    font-size: 0.9rem;
+  }
+
+  /* Social icon buttons - better touch targets */
+  .social-icon-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Progress bars slightly taller on mobile for better visibility */
+  .progress-track {
+    height: 7px;
+  }
+
+  /* Scrollbar: thin on mobile */
+  ::-webkit-scrollbar { width: 3px; }
+}
+
+/* Extra small screens (e.g. iPhone SE) */
+@media (max-width: 374px) {
+  .section-title {
+    font-size: 1.4rem;
+  }
+  .btn-primary,
+  .btn-secondary {
+    padding: 10px 18px;
+    font-size: 0.82rem;
+  }
+}

@@ -231,20 +231,20 @@ export default function Projects() {
 
   return (
     <>
-      <section id="projects" className="py-32 relative overflow-hidden section-divider">
+      <section id="projects" className="py-20 md:py-32 relative overflow-hidden section-divider">
         {/* Background orbs */}
         <div className="orb w-[500px] h-[500px] bg-indigo-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
         <div className="orb w-[400px] h-[400px] bg-cyan-500/10 absolute -bottom-[10%] -right-[5%] animate-[pulse-glow_9s_ease-in-out_infinite_2s]" />
 
-        <div className="max-w-[1200px] mx-auto px-8 relative z-10">
-          <div className="text-center mb-16 animate-fade-up">
+        <div className="max-w-[1200px] mx-auto px-5 md:px-8 relative z-10">
+          <div className="text-center mb-10 md:mb-16 animate-fade-up">
             <h2 className="section-title mb-4">Mes Projets</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+            <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg">
               Une sélection de mes réalisations, illustrant mon expertise full-stack.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
             {projects.map((project, index) => (
               <div
                 key={index}
@@ -253,7 +253,7 @@ export default function Projects() {
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-indigo-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
 
-                <div className="p-8 flex flex-col h-full gap-6">
+                <div className="p-5 md:p-8 flex flex-col h-full gap-4 md:gap-6">
                   {/* Header */}
                   <div className="flex items-start gap-4">
                     <div className="w-14 h-14 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-3xl shrink-0 overflow-hidden relative group-hover:bg-indigo-500/20 group-hover:scale-110 transition-all duration-300">

@@ -101,18 +101,18 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-32 relative overflow-hidden section-divider">
+    <section id="contact" className="py-20 md:py-32 relative overflow-hidden section-divider">
       {/* Unified Background orbs */}
       <div className="orb w-[500px] h-[500px] bg-indigo-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
       <div className="orb w-[400px] h-[400px] bg-cyan-500/10 absolute -bottom-[10%] -right-[5%] animate-[pulse-glow_9s_ease-in-out_infinite_2s]" />
 
-      <div className="max-w-[900px] mx-auto px-8 relative z-10">
+      <div className="max-w-[900px] mx-auto px-5 md:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-14">
           <h2 className="section-title animate-fade-up block mb-4">
             Me Contacter
           </h2>
-          <p className="animate-fade-up delay-100 text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="animate-fade-up delay-100 text-base md:text-lg text-slate-400 max-w-2xl mx-auto">
             Je suis toujours ouvert à de nouvelles opportunités. N&apos;hésitez pas
             à m&apos;écrire — je vous réponds rapidement !
           </p>
@@ -145,9 +145,9 @@ export default function Contact() {
         </div>
 
         {/* Form card */}
-        <div className="glass animate-fade-up delay-200 p-10 md:p-12 relative overflow-hidden group">
+        <div className="glass animate-fade-up delay-200 p-6 md:p-10 lg:p-12 relative overflow-hidden group">
           <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-indigo-500/20 to-transparent rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
-          
+
           <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
             <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
               <div className="form-group">
@@ -172,7 +172,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="votre.email@exemple.com"
+                  placeholder="Votre Email"
                   className="form-input focus:ring-2 focus:ring-indigo-500/30"
                 />
               </div>

@@ -42,7 +42,7 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer className="pt-12 pb-8 relative overflow-hidden bg-white/[0.01] border-t border-white/5">
-      <div className="max-w-[1100px] mx-auto px-8 flex flex-col items-center gap-6 relative z-10">
+      <div className="max-w-[1100px] mx-auto px-5 md:px-8 flex flex-col items-center gap-6 relative z-10">
         {/* Logo */}
         <span className="text-[1.5rem] font-black tracking-tight bg-gradient-to-br from-white via-indigo-400 to-cyan-500 text-transparent bg-clip-text">
           Amine Rachidi

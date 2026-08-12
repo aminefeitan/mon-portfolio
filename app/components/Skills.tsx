@@ -163,7 +163,7 @@ function CategoryCard({ category, index }: { category: SkillCategory; index: num
   return (
     <div
       ref={ref}
-      className="glass p-8 flex flex-col group animate-fade-up"
+      className="glass p-6 md:p-8 flex flex-col group animate-fade-up"
       style={{ animationDelay: `${index * 0.12}s` }}
     >
       {/* Category accent line */}
@@ -216,22 +216,22 @@ function CategoryCard({ category, index }: { category: SkillCategory; index: num
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-32 relative overflow-hidden section-divider">
+    <section id="skills" className="py-20 md:py-32 relative overflow-hidden section-divider">
       {/* Background orbs */}
       <div className="orb w-[500px] h-[500px] bg-indigo-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
       <div className="orb w-[400px] h-[400px] bg-cyan-500/10 absolute -bottom-[10%] -right-[5%] animate-[pulse-glow_9s_ease-in-out_infinite_2s]" />
       <div className="orb w-[350px] h-[350px] bg-purple-500/8 absolute top-[40%] right-[5%] animate-[pulse-glow_11s_ease-in-out_infinite_4s]" />
 
-      <div className="max-w-[1200px] mx-auto px-8 relative z-10">
-        <div className="text-center mb-16 animate-fade-up">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-8 relative z-10">
+        <div className="text-center mb-10 md:mb-16 animate-fade-up">
           <h2 className="section-title mb-4">Mes Compétences</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+          <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg">
             Un éventail de technologies, langages et méthodologies que j&apos;utilise
             et que je continue d&apos;apprendre au fil de ma formation.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-8">
           {skillCategories.map((category, index) => (
             <CategoryCard key={category.title} category={category} index={index} />
           ))}
