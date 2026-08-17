@@ -1,5 +1,7 @@
 "use client";
 
+import { useTheme } from "./ThemeProvider";
+
 const socialLinks = [
   {
     name: "LinkedIn",
@@ -40,11 +42,14 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   return (
-    <footer className="pt-12 pb-8 relative overflow-hidden bg-white/[0.01] border-t border-white/5">
+    <footer className={`pt-12 pb-8 relative overflow-hidden border-t ${isDark ? "bg-white/[0.01] border-white/5" : "bg-white/50 border-indigo-100"}`}>
       <div className="max-w-[1100px] mx-auto px-5 md:px-8 flex flex-col items-center gap-6 relative z-10">
         {/* Logo */}
-        <span className="text-[1.5rem] font-black tracking-tight bg-gradient-to-br from-white via-indigo-400 to-cyan-500 text-transparent bg-clip-text">
+        <span className={`text-[1.5rem] font-black tracking-tight bg-gradient-to-br ${isDark ? "from-white via-indigo-400 to-cyan-500" : "from-slate-900 via-indigo-600 to-cyan-600"} text-transparent bg-clip-text`}>
           Amine Rachidi
         </span>
 
@@ -58,7 +63,10 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label={s.name}
               title={s.name}
-              className="flex items-center justify-center w-[42px] h-[42px] rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white"
+              className={`flex items-center justify-center w-[42px] h-[42px] rounded-xl border transition-all duration-300 hover:-translate-y-1 hover:scale-110 ${isDark
+                ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-400 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white"
+                : "bg-indigo-50 border-indigo-200/50 text-indigo-600 hover:bg-indigo-100 hover:border-indigo-300 hover:text-indigo-900"
+                }`}
             >
               {s.icon}
             </a>
@@ -66,17 +74,15 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="w-full max-w-[500px] h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+        <div className={`w-full max-w-[500px] h-px bg-gradient-to-r from-transparent ${isDark ? "via-indigo-500/20" : "via-indigo-300/40"} to-transparent`} />
 
         {/* Copyright */}
-        <p className="text-[0.85rem] text-slate-500 m-0 text-center leading-relaxed">
+        <p className={`text-[0.85rem] m-0 text-center leading-relaxed ${isDark ? "text-slate-500" : "text-slate-500"}`}>
           © {new Date().getFullYear()}{" "}
-          <span className="text-white font-semibold tracking-wide">Amine Rachidi</span>
+          <span className={`font-semibold tracking-wide ${isDark ? "text-white" : "text-slate-800"}`}>Amine Rachidi</span>
           {" · "}Tous droits réservés.
-
         </p>
       </div>
     </footer>
   );
 }
-

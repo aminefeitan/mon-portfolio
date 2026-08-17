@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Loader2, CheckCircle2, AlertCircle, Send } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
 
 const socialLinks = [
   {
@@ -51,6 +52,9 @@ const socialLinks = [
 ];
 
 export default function Contact() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState(""); // "", "sending", "sent", "error"
 
@@ -112,7 +116,7 @@ export default function Contact() {
           <h2 className="section-title animate-fade-up block mb-4">
             Me Contacter
           </h2>
-          <p className="animate-fade-up delay-100 text-base md:text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className={`animate-fade-up delay-100 text-base md:text-lg max-w-2xl mx-auto ${isDark ? "text-slate-400" : "text-slate-500"}`}>
             Je suis toujours ouvert à de nouvelles opportunités. N&apos;hésitez pas
             à m&apos;écrire — je vous réponds rapidement !
           </p>
@@ -128,7 +132,10 @@ export default function Contact() {
               rel="noopener noreferrer"
               aria-label={s.name}
               title={s.name}
-              className="flex items-center justify-center w-[52px] h-[52px] rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 transition-all duration-300 hover:-translate-y-1.5 hover:scale-110 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white"
+              className={`flex items-center justify-center w-[52px] h-[52px] rounded-xl border transition-all duration-300 hover:-translate-y-1.5 hover:scale-110 ${isDark
+                ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-400 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white"
+                : "bg-indigo-50 border-indigo-200/50 text-indigo-600 hover:bg-indigo-100 hover:border-indigo-300 hover:text-indigo-900"
+                }`}
             >
               {s.icon}
             </a>
@@ -137,11 +144,11 @@ export default function Contact() {
 
         {/* Divider with "ou" */}
         <div className="animate-fade-up delay-200 flex items-center gap-4 mb-10">
-          <div className="flex-1 h-px bg-indigo-500/10" />
-          <span className="text-[0.8rem] text-slate-500 font-semibold tracking-widest uppercase">
+          <div className={`flex-1 h-px ${isDark ? "bg-indigo-500/10" : "bg-indigo-200/40"}`} />
+          <span className={`text-[0.8rem] font-semibold tracking-widest uppercase ${isDark ? "text-slate-500" : "text-slate-400"}`}>
             ou envoyez un message
           </span>
-          <div className="flex-1 h-px bg-indigo-500/10" />
+          <div className={`flex-1 h-px ${isDark ? "bg-indigo-500/10" : "bg-indigo-200/40"}`} />
         </div>
 
         {/* Form card */}
@@ -151,7 +158,7 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
             <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
               <div className="form-group">
-                <label htmlFor="contact-name" className="form-label text-indigo-300">Nom</label>
+                <label htmlFor="contact-name" className={`form-label ${isDark ? "text-indigo-300" : "text-indigo-700"}`}>Nom</label>
                 <input
                   id="contact-name"
                   type="text"
@@ -164,7 +171,7 @@ export default function Contact() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="contact-email" className="form-label text-indigo-300">Email</label>
+                <label htmlFor="contact-email" className={`form-label ${isDark ? "text-indigo-300" : "text-indigo-700"}`}>Email</label>
                 <input
                   id="contact-email"
                   type="email"
@@ -179,7 +186,7 @@ export default function Contact() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="contact-subject" className="form-label text-indigo-300">Objet</label>
+              <label htmlFor="contact-subject" className={`form-label ${isDark ? "text-indigo-300" : "text-indigo-700"}`}>Objet</label>
               <input
                 id="contact-subject"
                 type="text"
@@ -193,7 +200,7 @@ export default function Contact() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="contact-message" className="form-label text-indigo-300">Message</label>
+              <label htmlFor="contact-message" className={`form-label ${isDark ? "text-indigo-300" : "text-indigo-700"}`}>Message</label>
               <textarea
                 id="contact-message"
                 name="message"
@@ -214,11 +221,11 @@ export default function Contact() {
             </button>
 
             {/* Email hint */}
-            <p className="text-[0.8rem] text-slate-500 text-center m-0 mt-2">
+            <p className={`text-[0.8rem] text-center m-0 mt-2 ${isDark ? "text-slate-500" : "text-slate-400"}`}>
               Votre message sera envoyé à{" "}
               <a
                 href="mailto:rachidiamine906@gmail.com"
-                className="text-indigo-400 no-underline font-semibold hover:text-indigo-300 transition-colors"
+                className={`no-underline font-semibold transition-colors ${isDark ? "text-indigo-400 hover:text-indigo-300" : "text-indigo-600 hover:text-indigo-800"}`}
               >
                 rachidiamine906@gmail.com
               </a>

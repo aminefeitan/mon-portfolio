@@ -6,10 +6,8 @@ import {
   Code2,
   Globe,
   Sparkles,
-  Server,
-  Database,
-  Wrench,
 } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
 
 /* ── Skill Data ──────────────────────────────────────────────── */
 
@@ -36,9 +34,9 @@ const skillCategories: SkillCategory[] = [
     accentFrom: "#6366f1",
     accentTo: "#818cf8",
     skills: [
-      { name: "React / Next.js", level: 70 },
-      { name: "Spring Boot", level: 72 },
-      { name: "Node.js / Express", level: 60 },
+      { name: "React / Next.js", level: 75 },
+      { name: "Spring Boot", level: 65 },
+      { name: "Node.js", level: 60 },
       { name: "FastAPI", level: 50 },
       { name: "Tailwind CSS", level: 75 },
       { name: "Docker", level: 35 },
@@ -54,9 +52,8 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: "Java", level: 75 },
       { name: "JavaScript / TypeScript", level: 70 },
-      { name: "Python", level: 60 },
+      { name: "Python", level: 70 },
       { name: "SQL", level: 72 },
-      { name: "PostgreSQL / MongoDB", level: 55 },
       { name: "HTML / CSS", level: 80 },
       { name: "C / C++", level: 55 },
       { name: "PHP", level: 40 },
@@ -70,21 +67,8 @@ const skillCategories: SkillCategory[] = [
     accentTo: "#c084fc",
     skills: [
       { name: "Arabe", level: 100 },
-      { name: "Français", level: 88 },
       { name: "Anglais", level: 95 },
-    ],
-  },
-  {
-    title: "Autres Compétences",
-    icon: <Sparkles className="w-6 h-6" />,
-    description: "Méthodologies et compétences que j'apprends et pratique.",
-    accentFrom: "#10b981",
-    accentTo: "#34d399",
-    skills: [
-      { name: "UML / Merise", level: 70 },
-      { name: "Design Patterns", level: 55 },
-      { name: "REST API Design", level: 65 },
-      { name: "Linux Administration", level: 45 },
+      { name: "Français", level: 88 },
     ],
   },
 ];
@@ -97,12 +81,14 @@ function ProgressBar({
   accentTo,
   delay,
   isVisible,
+  isDark,
 }: {
   skill: Skill;
   accentFrom: string;
   accentTo: string;
   delay: number;
   isVisible: boolean;
+  isDark: boolean;
 }) {
   const from = skill.color || accentFrom;
   const to = accentTo;
@@ -113,7 +99,7 @@ function ProgressBar({
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className="flex justify-between items-center mb-2">
-        <span className="text-[0.9rem] font-semibold text-slate-200">
+        <span className={`text-[0.9rem] font-semibold ${isDark ? "text-slate-200" : "text-slate-800"}`}>
           {skill.name}
         </span>
         <span
@@ -141,7 +127,7 @@ function ProgressBar({
 
 /* ── Category Card ───────────────────────────────────────────── */
 
-function CategoryCard({ category, index }: { category: SkillCategory; index: number }) {
+function CategoryCard({ category, index, isDark }: { category: SkillCategory; index: number; isDark: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -179,19 +165,19 @@ function CategoryCard({ category, index }: { category: SkillCategory; index: num
         <div
           className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
           style={{
-            background: `${category.accentFrom}15`,
-            border: `1px solid ${category.accentFrom}30`,
+            background: isDark ? `${category.accentFrom}15` : `${category.accentFrom}20`,
+            border: `1px solid ${category.accentFrom}${isDark ? "30" : "40"}`,
             color: category.accentFrom,
           }}
         >
           {category.icon}
         </div>
-        <h3 className="text-xl font-bold text-white group-hover:text-indigo-300 transition-colors">
+        <h3 className={`text-xl font-bold transition-colors ${isDark ? "text-white group-hover:text-indigo-300" : "text-slate-900 group-hover:text-indigo-600"}`}>
           {category.title}
         </h3>
       </div>
 
-      <p className="text-[0.9rem] text-slate-400 leading-relaxed mb-7">
+      <p className={`text-[0.9rem] leading-relaxed mb-7 ${isDark ? "text-slate-400" : "text-slate-500"}`}>
         {category.description}
       </p>
 
@@ -205,6 +191,7 @@ function CategoryCard({ category, index }: { category: SkillCategory; index: num
             accentTo={category.accentTo}
             delay={i * 80}
             isVisible={isVisible}
+            isDark={isDark}
           />
         ))}
       </div>
@@ -215,6 +202,9 @@ function CategoryCard({ category, index }: { category: SkillCategory; index: num
 /* ── Skills Section ──────────────────────────────────────────── */
 
 export default function Skills() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   return (
     <section id="skills" className="py-20 md:py-32 relative overflow-hidden section-divider">
       {/* Background orbs */}
@@ -225,7 +215,7 @@ export default function Skills() {
       <div className="max-w-[1200px] mx-auto px-5 md:px-8 relative z-10">
         <div className="text-center mb-10 md:mb-16 animate-fade-up">
           <h2 className="section-title mb-4">Mes Compétences</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg">
+          <p className={`max-w-2xl mx-auto text-base md:text-lg ${isDark ? "text-slate-400" : "text-slate-500"}`}>
             Un éventail de technologies, langages et méthodologies que j&apos;utilise
             et que je continue d&apos;apprendre au fil de ma formation.
           </p>
@@ -233,7 +223,7 @@ export default function Skills() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-8">
           {skillCategories.map((category, index) => (
-            <CategoryCard key={category.title} category={category} index={index} />
+            <CategoryCard key={category.title} category={category} index={index} isDark={isDark} />
           ))}
         </div>
       </div>

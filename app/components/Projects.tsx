@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Activity, Play, X } from "lucide-react";
 import { useState, useCallback, useEffect } from "react";
+import { useTheme } from "./ThemeProvider";
 
 const GitHubIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
@@ -105,10 +106,12 @@ function VideoModal({
   videoUrl,
   projectTitle,
   onClose,
+  isDark,
 }: {
   videoUrl: string;
   projectTitle: string;
   onClose: () => void;
+  isDark: boolean;
 }) {
   const videoId = getYouTubeId(videoUrl);
   // Close on Escape key
@@ -138,8 +141,8 @@ function VideoModal({
         <div className="video-modal-header">
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
-            <h3 className="text-white font-bold text-lg m-0">{projectTitle}</h3>
-            <span className="text-[0.7rem] text-indigo-300 font-semibold uppercase tracking-widest">
+            <h3 className={`font-bold text-lg m-0 ${isDark ? "text-white" : "text-slate-900"}`}>{projectTitle}</h3>
+            <span className={`text-[0.7rem] font-semibold uppercase tracking-widest ${isDark ? "text-indigo-300" : "text-indigo-600"}`}>
               Démo vidéo
             </span>
           </div>
@@ -216,6 +219,9 @@ function VideoThumbnail({
 
 /* ─── Main Projects Component ────────────────────────────────── */
 export default function Projects() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   const [activeVideo, setActiveVideo] = useState<{
     url: string;
     title: string;
@@ -239,7 +245,7 @@ export default function Projects() {
         <div className="max-w-[1200px] mx-auto px-5 md:px-8 relative z-10">
           <div className="text-center mb-10 md:mb-16 animate-fade-up">
             <h2 className="section-title mb-4">Mes Projets</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-base md:text-lg">
+            <p className={`max-w-2xl mx-auto text-base md:text-lg ${isDark ? "text-slate-400" : "text-slate-500"}`}>
               Une sélection de mes réalisations, illustrant mon expertise full-stack.
             </p>
           </div>
@@ -256,7 +262,7 @@ export default function Projects() {
                 <div className="p-5 md:p-8 flex flex-col h-full gap-4 md:gap-6">
                   {/* Header */}
                   <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-3xl shrink-0 overflow-hidden relative group-hover:bg-indigo-500/20 group-hover:scale-110 transition-all duration-300">
+                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-3xl shrink-0 overflow-hidden relative transition-all duration-300 ${isDark ? "bg-indigo-500/10 border border-indigo-500/20 group-hover:bg-indigo-500/20" : "bg-indigo-100/60 border border-indigo-200/40 group-hover:bg-indigo-200/60"} group-hover:scale-110`}>
                       {project.logo ? (
                         <Image
                           src={project.logo}
@@ -265,14 +271,14 @@ export default function Projects() {
                           className="object-cover"
                         />
                       ) : (
-                        <span className="drop-shadow-md text-indigo-400">{project.emoji}</span>
+                        <span className={`drop-shadow-md ${isDark ? "text-indigo-400" : "text-indigo-600"}`}>{project.emoji}</span>
                       )}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-white m-0 leading-tight group-hover:text-indigo-300 transition-colors">
+                      <h3 className={`text-xl font-bold m-0 leading-tight transition-colors ${isDark ? "text-white group-hover:text-indigo-300" : "text-slate-900 group-hover:text-indigo-600"}`}>
                         {project.title}
                       </h3>
-                      <p className="text-[0.75rem] text-indigo-400 mt-1 font-semibold tracking-wider uppercase">
+                      <p className={`text-[0.75rem] mt-1 font-semibold tracking-wider uppercase ${isDark ? "text-indigo-400" : "text-indigo-600"}`}>
                         {project.technologies[0]}
                       </p>
                     </div>
@@ -288,24 +294,24 @@ export default function Projects() {
                   )}
 
                   {/* Description */}
-                  <p className="text-[0.95rem] text-slate-400 leading-relaxed m-0 grow">
+                  <p className={`text-[0.95rem] leading-relaxed m-0 grow ${isDark ? "text-slate-400" : "text-slate-600"}`}>
                     {project.description}
                   </p>
 
                   {/* Features (Compact list) */}
-                  <div className="flex flex-col gap-2 bg-indigo-500/5 rounded-xl p-4 border border-indigo-500/10 group-hover:border-indigo-500/20 transition-colors">
-                    <p className="text-[0.72rem] font-bold text-slate-400 uppercase tracking-widest mb-1">
+                  <div className={`flex flex-col gap-2 rounded-xl p-4 border transition-colors ${isDark ? "bg-indigo-500/5 border-indigo-500/10 group-hover:border-indigo-500/20" : "bg-indigo-50/50 border-indigo-200/30 group-hover:border-indigo-300/50"}`}>
+                    <p className={`text-[0.72rem] font-bold uppercase tracking-widest mb-1 ${isDark ? "text-slate-400" : "text-slate-500"}`}>
                       Points Clés
                     </p>
                     <ul className="space-y-1.5 m-0 p-0 list-none">
                       {project.features.slice(0, 3).map((f, i) => (
-                        <li key={i} className="flex items-center gap-2 text-[0.85rem] text-slate-300">
-                          <Activity className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                        <li key={i} className={`flex items-center gap-2 text-[0.85rem] ${isDark ? "text-slate-300" : "text-slate-700"}`}>
+                          <Activity className={`w-3.5 h-3.5 shrink-0 ${isDark ? "text-indigo-400" : "text-indigo-600"}`} />
                           <span className="truncate">{f}</span>
                         </li>
                       ))}
                       {project.features.length > 3 && (
-                        <li className="text-[0.8rem] text-slate-500 italic">
+                        <li className={`text-[0.8rem] italic ${isDark ? "text-slate-500" : "text-slate-400"}`}>
                           + {project.features.length - 3} autres...
                         </li>
                       )}
@@ -317,7 +323,7 @@ export default function Projects() {
                     {project.technologies.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-2.5 py-1 rounded-md text-[0.7rem] font-semibold bg-indigo-500/10 border border-indigo-500/20 text-indigo-300"
+                        className={`px-2.5 py-1 rounded-md text-[0.7rem] font-semibold border ${isDark ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300" : "bg-indigo-50 border-indigo-200/50 text-indigo-700"}`}
                       >
                         {tech}
                       </span>
@@ -325,13 +331,13 @@ export default function Projects() {
                   </div>
 
                   {/* Repo links */}
-                  <div className="flex gap-3 mt-auto pt-4 border-t border-indigo-500/10">
+                  <div className={`flex gap-3 mt-auto pt-4 border-t ${isDark ? "border-indigo-500/10" : "border-indigo-200/30"}`}>
                     {project.repos.frontend && (
                       <a
                         href={`https://github.com/aminefeitan/${project.repos.frontend}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-sm font-semibold text-indigo-300 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white transition-all duration-300 no-underline"
+                        className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-300 no-underline ${isDark ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white" : "bg-indigo-50/60 border-indigo-200/50 text-indigo-700 hover:bg-indigo-100 hover:border-indigo-300 hover:text-indigo-900"}`}
                       >
                         <GitHubIcon />
                         {project.repos.frontend === project.repos.backend ? "Code" : "Front"}
@@ -342,7 +348,7 @@ export default function Projects() {
                         href={`https://github.com/aminefeitan/${project.repos.backend}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-sm font-semibold text-indigo-300 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white transition-all duration-300 no-underline"
+                        className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-300 no-underline ${isDark ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white" : "bg-indigo-50/60 border-indigo-200/50 text-indigo-700 hover:bg-indigo-100 hover:border-indigo-300 hover:text-indigo-900"}`}
                       >
                         <GitHubIcon />
                         Backend
@@ -362,6 +368,7 @@ export default function Projects() {
           videoUrl={activeVideo.url}
           projectTitle={activeVideo.title}
           onClose={closeVideo}
+          isDark={isDark}
         />
       )}
     </>
