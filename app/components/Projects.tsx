@@ -30,7 +30,7 @@ const projects = [
       "Plateforme intelligente d'analyse, de conception et de modélisation territoriale destinée à accompagner les collectivités et les acteurs de l'aménagement.",
     features: ["Analyse territoriale", "Consultation documentaire", "Chatbot spécialisé", "Aide à la décision"],
     technologies: ["Next.js", "React", "FastAPI", "MistralAI", "PostgreSQL"],
-    repos: { frontend: "urbanisme-assistant", backend: "urbanisme-assistant" },
+    repo: "urbanisme-assistant",
     videoUrl: "https://youtu.be/gHXkbftqZeI",
   },
   {
@@ -41,7 +41,7 @@ const projects = [
       "Plateforme numérique dédiée à la gestion et à l'accès aux services sociaux, avec authentification sécurisée et tableau de bord complet.",
     features: ["Authentification sécurisée", "Gestion des demandes", "Tableau de bord", "Suivi des dossiers"],
     technologies: ["Next.js", "React", "TypeScript", "Spring Boot", "Spring Security", "MySQL"],
-    repos: { frontend: "social-services-frontend", backend: "social-services-backend" },
+    repo: "social-services",
     videoUrl: "",
   },
   {
@@ -52,7 +52,7 @@ const projects = [
       "Plateforme de gestion d'événements éducatifs et de billetterie en ligne avec gestion complète des participants.",
     features: ["Création d'événements", "Billetterie en ligne", "Gestion des participants"],
     technologies: ["HTML", "CSS", "JavaScript", "PHP", "MariaDB"],
-    repos: { frontend: "edu-events", backend: "edu-events" },
+    repo: "edu-events",
     videoUrl: "",
   },
   {
@@ -63,7 +63,7 @@ const projects = [
       "Application mobile de gestion de blanchisserie permettant le suivi numérique des commandes, scan QR et notifications temps réel.",
     features: ["Gestion des commandes", "Suivi du traitement", "Scan QR Code", "Notifications Firebase"],
     technologies: ["Android Java", "Firebase", "Retrofit", "Spring Boot", "MySQL"],
-    repos: { frontend: "laundry-app-frontend", backend: "laundry-app-backend" },
+    repo: "laundry-app",
     videoUrl: "",
   },
   {
@@ -74,7 +74,7 @@ const projects = [
       "Outil d'analyse de parties d'échecs avec moteur Stockfish intégré — détection des meilleures stratégies et statistiques avancées.",
     features: ["Analyse de parties", "Suggestions de coups", "Statistiques avancées"],
     technologies: ["JavaFX", "FXML", "Maven", "Stockfish", "SQLite"],
-    repos: { frontend: "chess-analyser", backend: "chess-analyser" },
+    repo: "chess-analyser",
     videoUrl: "",
   },
   {
@@ -85,7 +85,7 @@ const projects = [
       "Application de bureau pour la gestion des étudiants, des notes et des branches avec génération de relevés de notes en PDF.",
     features: ["Gestion des étudiants", "Suivi des notes", "Tableau de bord interactif", "Génération de PDF"],
     technologies: ["Python", "Tkinter", "SQLite", "ReportLab", "Matplotlib"],
-    repos: { frontend: "gestion-etablissement", backend: "gestion-etablissement" },
+    repo: "gestion-etablissement",
     videoUrl: "",
   },
   {
@@ -96,7 +96,7 @@ const projects = [
       "Application de bureau WPF moderne et réactive pour la gestion complète d'une salle de sport (membres, abonnements, revenus).",
     features: ["Gestion des membres", "Suivi des abonnements", "Tableau de bord", "Architecture Clean"],
     technologies: ["C#", "WPF", ".NET 10", "SQLite", "EF Core"],
-    repos: { frontend: "gym_manager", backend: "gym_manager" },
+    repo: "gym_manager",
     videoUrl: "",
   },
 ];
@@ -330,31 +330,20 @@ export default function Projects() {
                     ))}
                   </div>
 
-                  {/* Repo links */}
-                  <div className={`flex gap-3 mt-auto pt-4 border-t ${isDark ? "border-indigo-500/10" : "border-indigo-200/30"}`}>
-                    {project.repos.frontend && (
+                  {/* Repo link */}
+                  {project.repo && (
+                    <div className={`flex gap-3 mt-auto pt-4 border-t ${isDark ? "border-indigo-500/10" : "border-indigo-200/30"}`}>
                       <a
-                        href={`https://github.com/aminefeitan/${project.repos.frontend}`}
+                        href={`https://github.com/aminefeitan/${project.repo}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-300 no-underline ${isDark ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white" : "bg-indigo-50/60 border-indigo-200/50 text-indigo-700 hover:bg-indigo-100 hover:border-indigo-300 hover:text-indigo-900"}`}
                       >
                         <GitHubIcon />
-                        {project.repos.frontend === project.repos.backend ? "Code" : "Front"}
+                        Code
                       </a>
-                    )}
-                    {project.repos.backend && project.repos.backend !== project.repos.frontend && (
-                      <a
-                        href={`https://github.com/aminefeitan/${project.repos.backend}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-300 no-underline ${isDark ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white" : "bg-indigo-50/60 border-indigo-200/50 text-indigo-700 hover:bg-indigo-100 hover:border-indigo-300 hover:text-indigo-900"}`}
-                      >
-                        <GitHubIcon />
-                        Backend
-                      </a>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
