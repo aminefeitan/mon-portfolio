@@ -605,42 +605,282 @@ body::before {
     border: none;
   }
 
-  /* ─── Chatbot FAB (Floating Action Button) ─────────────────── */
+  /* ─── Hero Photo (Desktop: circular without hover) ─────────── */
+  .hero-photo-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    border-radius: 50%;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-photo-wrapper:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-photo-border {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #06b6d4, #a855f7, #6366f1);
+    background-size: 300% 300%;
+    animation: gradientRotate 6s ease-in-out infinite;
+    opacity: 0.9;
+    z-index: 0;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-photo-border:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-photo-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 1;
+    background: var(--th-surface);
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--th-surface);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  /* ─── Hero Photo (Mobile: circular 50% without hover) ──────── */
+  .hero-photo-circle-wrapper {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    border-radius: 50%;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-photo-circle-wrapper:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-photo-circle-border {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #06b6d4, #a855f7, #6366f1);
+    background-size: 300% 300%;
+    animation: gradientRotate 6s ease-in-out infinite;
+    opacity: 0.9;
+    z-index: 0;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-photo-circle-border:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-photo-circle-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 1;
+    background: var(--th-surface);
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-photo-circle-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--th-surface);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  @keyframes gradientRotate {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* ─── Timeline ──────────────────────────────────────────────── */
+  .timeline-container {
+    position: relative;
+    padding-left: 40px;
+  }
+  .timeline-line {
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      180deg,
+      rgba(99, 102, 241, 0.6) 0%,
+      rgba(6, 182, 212, 0.4) 50%,
+      rgba(99, 102, 241, 0.1) 100%
+    );
+    border-radius: 2px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 32px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+  .timeline-item.timeline-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -33px;
+    top: 28px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    border: 2px solid;
+    transition: all 0.3s ease;
+  }
+  .timeline-dot.work {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.4);
+    color: #818cf8;
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.2);
+  }
+  .timeline-dot.edu {
+    background: rgba(6, 182, 212, 0.15);
+    border-color: rgba(6, 182, 212, 0.4);
+    color: #22d3ee;
+    box-shadow: 0 0 12px rgba(6, 182, 212, 0.2);
+  }
+  .timeline-item:hover .timeline-dot.work {
+    background: rgba(99, 102, 241, 0.25);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.35);
+    transform: scale(1.15);
+  }
+  .timeline-item:hover .timeline-dot.edu {
+    background: rgba(6, 182, 212, 0.25);
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.35);
+    transform: scale(1.15);
+  }
+  .timeline-card {
+    /* Override glass hover to be subtler within timeline */
+  }
+  .timeline-card:hover {
+    transform: translateY(-2px);
+  }
+
+  /* ─── Mobile timeline adjustments ──────────────────────────── */
+  @media (max-width: 640px) {
+    .timeline-container {
+      padding-left: 32px;
+    }
+    .timeline-dot {
+      left: -26px;
+      width: 24px;
+      height: 24px;
+    }
+    .timeline-dot svg {
+      width: 12px;
+      height: 12px;
+    }
+    .timeline-line {
+      left: 11px;
+    }
+  }
+
+  /* ─── Chatbot FAB (Floating Action Button) ─────────────── */
   .chatbot-fab {
     position: fixed;
     bottom: 24px;
     right: 24px;
     z-index: 9998;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-    box-shadow:
-      0 4px 24px rgba(99, 102, 241, 0.45),
-      0 0 0 0 rgba(99, 102, 241, 0.4);
+    height: 56px;
+    padding: 0 20px 0 16px;
+    border-radius: 28px;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #7c3aed 100%);
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 10px;
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    animation: fabPulse 3s ease-in-out infinite;
-  }
-  .chatbot-fab:hover {
-    transform: scale(1.1);
+    overflow: hidden;
     box-shadow:
-      0 8px 32px rgba(99, 102, 241, 0.6),
-      0 0 0 8px rgba(99, 102, 241, 0.08);
-    animation: none;
+      0 8px 32px rgba(99, 102, 241, 0.35),
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
   }
+
+  /* Ambient glow behind the FAB */
+  .chatbot-fab-glow {
+    position: absolute;
+    inset: -12px;
+    border-radius: 40px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(99, 102, 241, 0.3) 0%,
+      rgba(124, 58, 237, 0.15) 40%,
+      transparent 70%
+    );
+    z-index: -1;
+    opacity: 0.7;
+    filter: blur(8px);
+    animation: fabGlow 3s ease-in-out infinite;
+    transition: opacity 0.3s;
+  }
+
+  .chatbot-fab:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow:
+      0 16px 48px rgba(99, 102, 241, 0.45),
+      0 4px 12px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(129, 140, 248, 0.4);
+    background: linear-gradient(135deg, #5b52f0 0%, #7c73f7 50%, #8b5cf6 100%);
+  }
+  .chatbot-fab:hover .chatbot-fab-glow {
+    opacity: 1;
+  }
+  .chatbot-fab:active {
+    transform: translateY(0) scale(0.98);
+  }
+
   .chatbot-fab.active {
-    animation: none;
+    padding: 0 16px;
+    gap: 0;
+    border-radius: 16px;
+    height: 48px;
     background: var(--th-glass-bg);
-    border-color: rgba(99, 102, 241, 0.4);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  .chatbot-fab.active .chatbot-fab-glow {
+    opacity: 0;
   }
   .chatbot-fab.active:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
   }
 
   .chatbot-fab-icon {
@@ -648,31 +888,35 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   .chatbot-fab:hover .chatbot-fab-icon {
-    transform: rotate(-12deg);
+    transform: scale(1.1);
   }
   .chatbot-fab.active .chatbot-fab-icon {
-    transform: rotate(0deg);
+    color: var(--th-text-secondary);
   }
 
-  .chatbot-fab-badge {
-    position: absolute;
-    top: -3px;
-    right: -3px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #ef4444;
+  /* Chat label in the pill */
+  .chatbot-fab-label {
     color: #fff;
-    font-size: 0.65rem;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--th-bg);
-    animation: badgeBounce 2s ease-in-out infinite;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+  }
+
+  /* Animated dots inside the chat bubble icon */
+  .chatbot-icon-dot {
+    animation: iconDotBounce 1.8s ease-in-out infinite;
+  }
+  .chatbot-icon-dot-2 {
+    animation-delay: 0.15s;
+  }
+  .chatbot-icon-dot-3 {
+    animation-delay: 0.3s;
   }
 
   /* ─── Chatbot Window ───────────────────────────────────────── */
@@ -729,15 +973,30 @@ body::before {
   }
   .chatbot-header-avatar {
     position: relative;
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(99, 102, 241, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #a5b4fc;
     flex-shrink: 0;
+    overflow: hidden;
+  }
+  .chatbot-header-avatar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(99, 102, 241, 0.2) 0%,
+      transparent 50%,
+      rgba(6, 182, 212, 0.15) 100%
+    );
+    animation: shimmer 3s ease-in-out infinite;
   }
   .chatbot-status-dot {
     position: absolute;
@@ -1075,22 +1334,25 @@ body::before {
   }
 }
 
-@keyframes fabPulse {
-  0%, 100% {
-    box-shadow:
-      0 4px 24px rgba(99, 102, 241, 0.45),
-      0 0 0 0 rgba(99, 102, 241, 0.4);
-  }
-  50% {
-    box-shadow:
-      0 4px 24px rgba(99, 102, 241, 0.45),
-      0 0 0 12px rgba(99, 102, 241, 0);
-  }
+@keyframes fabGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%      { opacity: 0.8; transform: scale(1.05); }
 }
 
-@keyframes badgeBounce {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+@keyframes iconDotBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  30% {
+    transform: translateY(-1.5px);
+    opacity: 1;
+  }
 }
 
 @keyframes chatMsgIn {
@@ -1210,8 +1472,12 @@ body::before {
   .chatbot-fab {
     bottom: 16px;
     right: 16px;
-    width: 54px;
-    height: 54px;
+    height: 50px;
+    padding: 0 14px;
+    border-radius: 25px;
+  }
+  .chatbot-fab-label {
+    display: none;
   }
   .chatbot-window {
     bottom: 0;

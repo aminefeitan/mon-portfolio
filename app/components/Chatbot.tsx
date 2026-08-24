@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { MessageCircle, X, Send, Bot, User, Sparkles } from "lucide-react";
+import { X, Send, User, Sparkles } from "lucide-react";
 import { findBestResponse, ChatResponse } from "@/app/lib/chatbotEngine";
 import { welcomeMessage, initialSuggestions } from "@/app/data/chatbotData";
 import { useTheme } from "./ThemeProvider";
+import { useTranslation } from "@/app/lib/i18n";
 
 /* ── Types ───────────────────────────────────────────────────── */
 interface Message {
@@ -46,12 +47,44 @@ function formatMessage(text: string, isDark: boolean) {
   ));
 }
 
+/* ── Chat Bot Icon ───────────────────────────────────────────── */
+function ChatBotIcon({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient id="chatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#818cf8" />
+          <stop offset="100%" stopColor="#06b6d4" />
+        </linearGradient>
+      </defs>
+      {/* Chat bubble body */}
+      <path
+        d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7.5L4 21V4z"
+        fill="url(#chatGrad)"
+        opacity="0.15"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      {/* Typing dots inside bubble */}
+      <circle cx="8.5" cy="11" r="1.2" fill="currentColor" className="chatbot-icon-dot chatbot-icon-dot-1" />
+      <circle cx="12" cy="11" r="1.2" fill="currentColor" className="chatbot-icon-dot chatbot-icon-dot-2" />
+      <circle cx="15.5" cy="11" r="1.2" fill="currentColor" className="chatbot-icon-dot chatbot-icon-dot-3" />
+    </svg>
+  );
+}
+
 /* ── Typing Indicator ────────────────────────────────────────── */
 function TypingIndicator() {
   return (
     <div className="chatbot-msg-row bot">
       <div className="chatbot-avatar bot">
-        <Bot className="w-3.5 h-3.5" />
+        <ChatBotIcon className="w-3.5 h-3.5" />
       </div>
       <div className="chatbot-bubble bot chatbot-typing">
         <span className="typing-dot" />
@@ -65,6 +98,7 @@ function TypingIndicator() {
 /* ── Chatbot Component ───────────────────────────────────────── */
 export default function Chatbot() {
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const isDark = theme === "dark";
 
   const [isOpen, setIsOpen] = useState(false);
@@ -173,18 +207,18 @@ export default function Chatbot() {
         <div className="chatbot-header">
           <div className="chatbot-header-info">
             <div className="chatbot-header-avatar">
-              <Bot className="w-5 h-5" />
+              <ChatBotIcon className="w-5 h-5" />
               <span className="chatbot-status-dot" />
             </div>
             <div>
-              <h3 className="chatbot-header-name">Assistant d&apos;Amine</h3>
-              <span className="chatbot-header-status">En ligne · Répond instantanément</span>
+              <h3 className="chatbot-header-name">{t("chatbot.name")}</h3>
+              <span className="chatbot-header-status">{t("chatbot.status")}</span>
             </div>
           </div>
           <button
             onClick={toggleChat}
             className="chatbot-close-btn"
-            aria-label="Fermer le chat"
+            aria-label={t("chatbot.closeAria")}
           >
             <X className="w-4 h-4" />
           </button>
@@ -196,7 +230,7 @@ export default function Chatbot() {
             <div key={msg.id} className={`chatbot-msg-row ${msg.sender}`}>
               {msg.sender === "bot" && (
                 <div className="chatbot-avatar bot">
-                  <Bot className="w-3.5 h-3.5" />
+                  <ChatBotIcon className="w-3.5 h-3.5" />
                 </div>
               )}
               <div className={`chatbot-bubble ${msg.sender}`}>
@@ -242,7 +276,7 @@ export default function Chatbot() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Posez votre question..."
+            placeholder={t("chatbot.inputPlaceholder")}
             className="chatbot-input"
             disabled={isTyping}
           />
@@ -250,7 +284,7 @@ export default function Chatbot() {
             type="submit"
             className="chatbot-send-btn"
             disabled={!input.trim() || isTyping}
-            aria-label="Envoyer le message"
+            aria-label={t("chatbot.sendAria")}
           >
             <Send className="w-4 h-4" />
           </button>
@@ -261,18 +295,19 @@ export default function Chatbot() {
       <button
         onClick={toggleChat}
         className={`chatbot-fab ${isOpen ? "active" : ""}`}
-        aria-label={isOpen ? "Fermer le chat" : "Ouvrir le chat"}
+        aria-label={isOpen ? t("chatbot.closeAria") : t("chatbot.openAria")}
         id="chatbot-toggle"
       >
+        <span className="chatbot-fab-glow" />
         <div className="chatbot-fab-icon">
           {isOpen ? (
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           ) : (
-            <MessageCircle className="w-6 h-6" />
+            <ChatBotIcon className="w-6 h-6" />
           )}
         </div>
-        {!isOpen && !hasOpenedRef.current && (
-          <span className="chatbot-fab-badge">1</span>
+        {!isOpen && (
+          <span className="chatbot-fab-label">{t("chatbot.fabLabel")}</span>
         )}
       </button>
     </>

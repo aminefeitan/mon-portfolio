@@ -5,9 +5,9 @@ import {
   Monitor,
   Code2,
   Globe,
-  Sparkles,
 } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
+import { useTranslation } from "@/app/lib/i18n";
 
 /* ── Skill Data ──────────────────────────────────────────────── */
 
@@ -25,53 +25,6 @@ interface SkillCategory {
   accentFrom: string;
   accentTo: string;
 }
-
-const skillCategories: SkillCategory[] = [
-  {
-    title: "Technologies & Frameworks",
-    icon: <Monitor className="w-6 h-6" />,
-    description: "Les outils et frameworks que j'utilise dans mes projets.",
-    accentFrom: "#6366f1",
-    accentTo: "#818cf8",
-    skills: [
-      { name: "React / Next.js", level: 75 },
-      { name: "Spring Boot", level: 65 },
-      { name: "Node.js", level: 60 },
-      { name: "FastAPI", level: 50 },
-      { name: "Tailwind CSS", level: 75 },
-      { name: "Docker", level: 35 },
-      { name: "Git / GitHub", level: 78 },
-    ],
-  },
-  {
-    title: "Langages de Programmation",
-    icon: <Code2 className="w-6 h-6" />,
-    description: "Les langages avec lesquels je travaille sur mes projets.",
-    accentFrom: "#06b6d4",
-    accentTo: "#22d3ee",
-    skills: [
-      { name: "Java", level: 75 },
-      { name: "JavaScript / TypeScript", level: 70 },
-      { name: "Python", level: 70 },
-      { name: "SQL", level: 72 },
-      { name: "HTML / CSS", level: 80 },
-      { name: "C / C++", level: 55 },
-      { name: "PHP", level: 40 },
-    ],
-  },
-  {
-    title: "Langues",
-    icon: <Globe className="w-6 h-6" />,
-    description: "Les langues que je parle couramment ou professionnellement.",
-    accentFrom: "#a855f7",
-    accentTo: "#c084fc",
-    skills: [
-      { name: "Arabe", level: 100 },
-      { name: "Anglais", level: 95 },
-      { name: "Français", level: 88 },
-    ],
-  },
-];
 
 /* ── Animated Progress Bar ───────────────────────────────────── */
 
@@ -203,7 +156,55 @@ function CategoryCard({ category, index, isDark }: { category: SkillCategory; in
 
 export default function Skills() {
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const isDark = theme === "dark";
+
+  const skillCategories: SkillCategory[] = [
+    {
+      title: t("skills.categories.techTitle"),
+      icon: <Monitor className="w-6 h-6" />,
+      description: t("skills.categories.techDesc"),
+      accentFrom: "#6366f1",
+      accentTo: "#818cf8",
+      skills: [
+        { name: "React / Next.js", level: 75 },
+        { name: "Spring Boot", level: 65 },
+        { name: "Node.js", level: 60 },
+        { name: "FastAPI", level: 50 },
+        { name: "Tailwind CSS", level: 65 },
+        { name: "Git / GitHub", level: 78 },
+      ],
+    },
+    {
+      title: t("skills.categories.langTitle"),
+      icon: <Code2 className="w-6 h-6" />,
+      description: t("skills.categories.langDesc"),
+      accentFrom: "#06b6d4",
+      accentTo: "#22d3ee",
+      skills: [
+        { name: "HTML", level: 100 },
+        { name: "CSS", level: 95 },
+        { name: "JavaScript", level: 70 },
+        { name: "PHP", level: 50 },
+        { name: "Java", level: 75 },
+        { name: "C / C++", level: 55 },
+        { name: "Python", level: 70 },
+        { name: "SQL", level: 72 },
+      ],
+    },
+    {
+      title: t("skills.categories.languagesSpokenTitle"),
+      icon: <Globe className="w-6 h-6" />,
+      description: t("skills.categories.languagesSpokenDesc"),
+      accentFrom: "#a855f7",
+      accentTo: "#c084fc",
+      skills: [
+        { name: t("skills.spoken.arabic"), level: 100 },
+        { name: t("skills.spoken.english"), level: 95 },
+        { name: t("skills.spoken.french"), level: 88 },
+      ],
+    },
+  ];
 
   return (
     <section id="skills" className="py-20 md:py-32 relative overflow-hidden section-divider">
@@ -214,10 +215,9 @@ export default function Skills() {
 
       <div className="max-w-[1200px] mx-auto px-5 md:px-8 relative z-10">
         <div className="text-center mb-10 md:mb-16 animate-fade-up">
-          <h2 className="section-title mb-4">Mes Compétences</h2>
+          <h2 className="section-title mb-4">{t("skills.title")}</h2>
           <p className={`max-w-2xl mx-auto text-base md:text-lg ${isDark ? "text-slate-400" : "text-slate-500"}`}>
-            Un éventail de technologies, langages et méthodologies que j&apos;utilise
-            et que je continue d&apos;apprendre au fil de ma formation.
+            {t("skills.subtitle")}
           </p>
         </div>
 

@@ -2,51 +2,90 @@
 
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Globe } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
-
-const navLinks = [
-  { href: "#hero", label: "Accueil" },
-  { href: "#about", label: "À propos" },
-  { href: "#skills", label: "Compétences" },
-  { href: "#projects", label: "Projets" },
-  { href: "#contact", label: "Contact" },
-];
+import { useTranslation } from "@/app/lib/i18n";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState("#hero");
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { t, locale, toggleLocale } = useTranslation();
 
-  // Track scroll for navbar background
+  const navLinks = [
+    { href: "#hero", label: t("nav.home") },
+    { href: "#about", label: t("nav.about") },
+    { href: "#experience", label: t("nav.experience") },
+    { href: "#skills", label: t("nav.skills") },
+    { href: "#certifications", label: t("nav.certifications") },
+    { href: "#projects", label: t("nav.projects") },
+    { href: "#contact", label: t("nav.contact") },
+  ];
+
+  // Track active section and navbar background on scroll
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
+    const sectionIds = ["hero", "about", "experience", "skills", "certifications", "projects", "contact"];
+
+    const updateScrollState = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // Update navbar background blur
+      setScrolled(scrollY > 30);
+
+      // Bottom of page -> highlight contact
+      if (scrollY + windowHeight >= documentHeight - 50) {
+        setActive("#contact");
+        return;
+      }
+
+      // Top of page -> highlight hero
+      if (scrollY < 100) {
+        setActive("#hero");
+        return;
+      }
+
+      // Target offset from top (header height + safe margin)
+      const targetOffset = 180;
+      let currentSection = "";
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= targetOffset && rect.bottom > targetOffset) {
+          currentSection = `#${id}`;
+          break;
+        }
+      }
+
+      if (currentSection) {
+        setActive(currentSection);
+      }
+    };
+
+    updateScrollState();
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateScrollState();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", onScroll, { passive: true });
 
-  // Track active section via IntersectionObserver
-  useEffect(() => {
-    const sectionIds = navLinks.map((l) => l.href.replace("#", ""));
-    const observers: IntersectionObserver[] = [];
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActive(`#${id}`);
-          }
-        },
-        { threshold: 0.3, rootMargin: "-80px 0px -50% 0px" }
-      );
-      observer.observe(el);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach((o) => o.disconnect());
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   // Lock body scroll when mobile menu is open
@@ -96,15 +135,15 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Nav links + Theme Toggle */}
-          <div className="hidden md:flex items-center gap-10">
-            <ul className="flex list-none gap-10 m-0 p-0">
+          {/* Desktop Nav links + Actions */}
+          <div className="hidden md:flex items-center gap-7 lg:gap-9">
+            <ul className="flex list-none gap-6 lg:gap-8 m-0 p-0">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
                     onClick={() => setActive(link.href)}
-                    className={`text-[0.93rem] font-medium no-underline transition-colors duration-200 relative hover:text-slate-200 ${active === link.href
+                    className={`text-[0.92rem] font-medium no-underline transition-colors duration-200 relative hover:text-slate-200 ${active === link.href
                       ? "text-indigo-400"
                       : isDark ? "text-slate-400" : "text-slate-500 hover:!text-slate-800"
                       }`}
@@ -117,6 +156,20 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
+
+            {/* Language Toggle Button */}
+            <button
+              onClick={toggleLocale}
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-[0.8rem] font-bold tracking-wider uppercase transition-all duration-200 ${isDark
+                ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white"
+                : "bg-indigo-50 border-indigo-200/50 text-indigo-700 hover:bg-indigo-100 hover:text-indigo-900"
+                }`}
+              aria-label={`Changer la langue (actuellement ${locale.toUpperCase()})`}
+              title="Changer de langue / Switch language"
+            >
+              <Globe className="w-3.5 h-3.5" />
+              <span>{locale === "fr" ? "EN" : "FR"}</span>
+            </button>
 
             {/* Theme Toggle Button */}
             <button
@@ -135,8 +188,22 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile: Theme Toggle + Hamburger */}
+          {/* Mobile: Language + Theme Toggle + Hamburger */}
           <div className="md:hidden flex items-center gap-2 relative z-[60]">
+            {/* Language Toggle Mobile */}
+            <button
+              onClick={toggleLocale}
+              className={`h-9 px-2.5 flex items-center gap-1 rounded-xl border text-[0.75rem] font-bold uppercase transition-all duration-200 ${isDark
+                ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300"
+                : "bg-indigo-50 border-indigo-200/50 text-indigo-700"
+                }`}
+              aria-label={`Changer la langue (${locale.toUpperCase()})`}
+            >
+              <Globe className="w-3.5 h-3.5" />
+              <span>{locale === "fr" ? "EN" : "FR"}</span>
+            </button>
+
+            {/* Theme Toggle Mobile */}
             <button
               onClick={toggleTheme}
               className="theme-toggle !w-9 !h-9"
@@ -151,6 +218,7 @@ export default function Navbar() {
               </div>
             </button>
 
+            {/* Hamburger Mobile */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className={`w-10 h-10 flex items-center justify-center rounded-xl border transition-all duration-300 ${isDark
@@ -214,7 +282,7 @@ export default function Navbar() {
                 <a
                   href={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className={`block w-full text-center py-4 px-6 rounded-2xl text-[1.1rem] font-semibold no-underline transition-all duration-300 ${active === link.href
+                  className={`block w-full text-center py-3.5 px-6 rounded-2xl text-[1.05rem] font-semibold no-underline transition-all duration-300 ${active === link.href
                     ? isDark
                       ? "bg-indigo-500/15 border border-indigo-500/30 text-white shadow-[0_0_20px_rgba(99,102,241,0.1)]"
                       : "bg-indigo-100/60 border border-indigo-300/40 text-indigo-700 shadow-[0_0_20px_rgba(99,102,241,0.06)]"
@@ -234,7 +302,7 @@ export default function Navbar() {
 
           {/* Bottom decoration in menu */}
           <div
-            className="mt-12 flex flex-col items-center gap-3"
+            className="mt-8 flex flex-col items-center gap-3"
             style={{
               opacity: menuOpen ? 1 : 0,
               transform: menuOpen ? "translateY(0)" : "translateY(20px)",
@@ -243,7 +311,7 @@ export default function Navbar() {
           >
             <div className="w-8 h-[1px] bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent" />
             <span className={`text-[0.75rem] font-medium tracking-[0.15em] uppercase ${isDark ? "text-slate-600" : "text-slate-400"}`}>
-              Portfolio 2025
+              Amine Rachidi · 2026
             </span>
           </div>
         </div>

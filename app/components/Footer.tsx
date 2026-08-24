@@ -1,6 +1,7 @@
 "use client";
 
 import { useTheme } from "./ThemeProvider";
+import { useTranslation } from "@/app/lib/i18n";
 
 const socialLinks = [
   {
@@ -43,6 +44,7 @@ const socialLinks = [
 
 export default function Footer() {
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const isDark = theme === "dark";
 
   return (
@@ -80,7 +82,7 @@ export default function Footer() {
         <p className={`text-[0.85rem] m-0 text-center leading-relaxed ${isDark ? "text-slate-500" : "text-slate-500"}`}>
           © {new Date().getFullYear()}{" "}
           <span className={`font-semibold tracking-wide ${isDark ? "text-white" : "text-slate-800"}`}>Amine Rachidi</span>
-          {" · "}Tous droits réservés.
+          {" · "}{t("footer.tagline")}
         </p>
       </div>
     </footer>

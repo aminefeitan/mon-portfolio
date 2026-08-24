@@ -1,0 +1,186 @@
+import { fr } from "./fr";
+
+export const en: typeof fr = {
+  nav: {
+    home: "Home",
+    about: "About",
+    experience: "Experience",
+    skills: "Skills",
+    certifications: "Certifications",
+    projects: "Projects",
+    contact: "Contact",
+  },
+  hero: {
+    badge: "Available for Opportunities",
+    name: "Amine RACHIDI",
+    role: "Software Engineering Student",
+    description:
+      "2nd-year engineering student at ENSIASD Taroudannt, passionate about full-stack development, territorial data analysis, scalable digital platforms, and decision-support systems.",
+    viewProjects: "View Projects",
+    contactMe: "Get in Touch",
+    downloadCV: "Download Resume",
+    stats: {
+      projectsValue: "5+",
+      projectsLabel: "Academic Projects",
+      internshipsValue: "3",
+      internshipsLabel: "Internships Completed",
+      technologiesValue: "10+",
+      technologiesLabel: "Technologies Mastered",
+    },
+  },
+  about: {
+    title: "About Me",
+    subtitle: "Dedicated to engineering efficient, maintainable, and scalable digital solutions.",
+    journeyTitle: "My Background",
+    journeyP1:
+      "Currently in my 2nd year of the state software engineering cycle at ENSIASD Taroudannt, I focus on software architecture, systems analysis, data modeling, and full-stack web development.",
+    journeyP2:
+      "I build with modern technologies including Java Spring Boot, React, Next.js, FastAPI, and Python. My projects and internships span territorial intelligence platforms, social welfare management systems, and automated desktop applications.",
+    trainingCardTitle: "Education",
+    trainingCardSub: "Engineering Degree & DUT",
+    schoolCardTitle: "ENSIASD",
+    schoolCardSub: "Taroudannt · Year 2",
+    interestsTitle: "Areas of Expertise",
+    interests: {
+      is: "Information Systems Analysis & Design",
+      architecture: "Software Architecture",
+      fullstack: "Full Stack Web Development",
+      dataModeling: "Database & Data Modeling",
+      geospatial: "Geospatial & Decision-Support Apps",
+      api: "Secure RESTful APIs",
+    },
+  },
+  experience: {
+    title: "Experience & Education",
+    subtitle: "My professional internships and academic pathway.",
+    typeWork: "Internship",
+    typeEdu: "Education",
+    items: {
+      stageUrbanisme: {
+        date: "June 2026",
+        title: "Full Stack Developer Intern",
+        org: "Urban Agency of Khenifra",
+        location: "Khenifra, Morocco",
+        desc: [
+          "Engineered an intelligent AI chatbot to assist users with urban planning regulations and documentation.",
+          "Designed and built an administrative portal for real-time monitoring, usage tracking, and data management.",
+          "Contributed to system architecture design and end-to-end integration of platform services.",
+        ],
+      },
+      stageSante: {
+        date: "April – May 2025",
+        title: "Web Developer Intern",
+        org: "Provincial Delegation of Health",
+        location: "Khenifra, Morocco",
+        desc: [
+          "Developed a comprehensive web platform for managing and tracking social welfare services.",
+          "Designed responsive user interfaces and implemented robust backend APIs and business logic.",
+          "Delivered a secure solution tailored to operational management and tracking requirements.",
+        ],
+      },
+      stageEducation: {
+        date: "May 2024",
+        title: "Python Developer Intern",
+        org: "Provincial Directorate of National Education",
+        location: "Khenifra, Morocco",
+        desc: [
+          "Developed a Python desktop management application for educational establishments.",
+          "Implemented student records management, grade tracking, and automated PDF report generation.",
+          "Explored organizational IT infrastructure, network topologies, and systems administration.",
+        ],
+      },
+      ensiasd: {
+        date: "2025 – 2028",
+        title: "State Engineering Degree in Software Engineering",
+        org: "ENSIASD Taroudannt",
+        location: "Taroudannt, Morocco",
+        desc: [
+          "National School of Applied Sciences — In-depth curriculum in software engineering, distributed architectures, database modeling, and modern web frameworks.",
+        ],
+      },
+      dut: {
+        date: "2023 – 2025",
+        title: "University Diploma of Technology (DUT) in Software Engineering",
+        org: "EST Khenifra",
+        location: "Khenifra, Morocco",
+        desc: [
+          "Higher School of Technology — Solid foundation in OOP, data structures, algorithms, UML modeling, and relational database management.",
+        ],
+      },
+      bac: {
+        date: "2023",
+        title: "High School Baccalaureate in Physical Sciences",
+        org: "Tariq Qualifying High School",
+        location: "Khenifra, Morocco",
+        desc: ["Baccalaureate in Physical Sciences (with honors)."],
+      },
+    },
+  },
+  skills: {
+    title: "Skills & Technologies",
+    subtitle:
+      "A comprehensive spectrum of technologies, programming languages, and engineering practices I leverage.",
+    categories: {
+      techTitle: "Technologies & Frameworks",
+      techDesc: "Frameworks, libraries, and tools leveraged across my development workflow.",
+      langTitle: "Programming Languages",
+      langDesc: "Languages used to develop full-stack applications, backend services, and systems.",
+      languagesSpokenTitle: "Spoken Languages",
+      languagesSpokenDesc: "Languages I speak proficiently in personal and professional environments.",
+    },
+    spoken: {
+      arabic: "Arabic",
+      english: "English",
+      french: "French",
+    },
+  },
+  certifications: {
+    title: "Certifications",
+    subtitle: "Professional certifications and accredited credentials.",
+    inProgressTitle: "In Progress",
+    inProgressDesc:
+      "I am currently preparing professional certifications in cloud development, software architecture, and modern engineering practices. This section will be updated upon accreditation.",
+  },
+  projects: {
+    title: "Featured Projects",
+    subtitle: "A curated showcase of applications demonstrating my full-stack engineering expertise.",
+    keyPoints: "Key Highlights",
+    andMore: "more features...",
+    codeBtn: "Source Code",
+    demoBtn: "Live Demo",
+    videoDemoLabel: "Video Demo",
+    closeVideoAria: "Close video",
+  },
+  contact: {
+    title: "Get in Touch",
+    subtitle:
+      "I am always open to exploring new engineering opportunities and collaborations. Feel free to reach out — I will respond promptly!",
+    orDivider: "or send a direct message",
+    formName: "Name",
+    formNamePlaceholder: "Your Name",
+    formEmail: "Email",
+    formEmailPlaceholder: "your.email@example.com",
+    formSubject: "Subject",
+    formSubjectPlaceholder: "Project Inquiry / Opportunity",
+    formMessage: "Message",
+    formMessagePlaceholder: "Write your message here…",
+    sending: "Sending message...",
+    sentSuccess: "Message sent successfully!",
+    sentError: "Failed to send message (please try again)",
+    submitBtn: "Send Message",
+    sentHint: "Your message will be sent directly to",
+  },
+  footer: {
+    tagline: "All rights reserved.",
+    yearNote: "Portfolio 2026",
+  },
+  chatbot: {
+    name: "Amine's Virtual Assistant",
+    status: "Online · Instant response",
+    inputPlaceholder: "Ask a question about Amine...",
+    sendAria: "Send message",
+    closeAria: "Close chat",
+    openAria: "Open chat",
+    fabLabel: "Chat",
+  },
+};

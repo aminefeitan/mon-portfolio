@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Loader2, CheckCircle2, AlertCircle, Send } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
+import { useTranslation } from "@/app/lib/i18n";
 
 const socialLinks = [
   {
@@ -53,6 +54,7 @@ const socialLinks = [
 
 export default function Contact() {
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const isDark = theme === "dark";
 
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
@@ -114,11 +116,10 @@ export default function Contact() {
         {/* Header */}
         <div className="text-center mb-14">
           <h2 className="section-title animate-fade-up block mb-4">
-            Me Contacter
+            {t("contact.title")}
           </h2>
           <p className={`animate-fade-up delay-100 text-base md:text-lg max-w-2xl mx-auto ${isDark ? "text-slate-400" : "text-slate-500"}`}>
-            Je suis toujours ouvert à de nouvelles opportunités. N&apos;hésitez pas
-            à m&apos;écrire — je vous réponds rapidement !
+            {t("contact.subtitle")}
           </p>
         </div>
 
@@ -146,7 +147,7 @@ export default function Contact() {
         <div className="animate-fade-up delay-200 flex items-center gap-4 mb-10">
           <div className={`flex-1 h-px ${isDark ? "bg-indigo-500/10" : "bg-indigo-200/40"}`} />
           <span className={`text-[0.8rem] font-semibold tracking-widest uppercase ${isDark ? "text-slate-500" : "text-slate-400"}`}>
-            ou envoyez un message
+            {t("contact.orDivider")}
           </span>
           <div className={`flex-1 h-px ${isDark ? "bg-indigo-500/10" : "bg-indigo-200/40"}`} />
         </div>
@@ -158,7 +159,7 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
             <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
               <div className="form-group">
-                <label htmlFor="contact-name" className={`form-label ${isDark ? "text-indigo-300" : "text-indigo-700"}`}>Nom</label>
+                <label htmlFor="contact-name" className={`form-label ${isDark ? "text-indigo-300" : "text-indigo-700"}`}>{t("contact.formName")}</label>
                 <input
                   id="contact-name"
                   type="text"
@@ -166,12 +167,12 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  placeholder="Votre Nom"
+                  placeholder={t("contact.formNamePlaceholder")}
                   className="form-input focus:ring-2 focus:ring-indigo-500/30"
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="contact-email" className={`form-label ${isDark ? "text-indigo-300" : "text-indigo-700"}`}>Email</label>
+                <label htmlFor="contact-email" className={`form-label ${isDark ? "text-indigo-300" : "text-indigo-700"}`}>{t("contact.formEmail")}</label>
                 <input
                   id="contact-email"
                   type="email"
@@ -179,14 +180,14 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="Votre Email"
+                  placeholder={t("contact.formEmailPlaceholder")}
                   className="form-input focus:ring-2 focus:ring-indigo-500/30"
                 />
               </div>
             </div>
 
             <div className="form-group">
-              <label htmlFor="contact-subject" className={`form-label ${isDark ? "text-indigo-300" : "text-indigo-700"}`}>Objet</label>
+              <label htmlFor="contact-subject" className={`form-label ${isDark ? "text-indigo-300" : "text-indigo-700"}`}>{t("contact.formSubject")}</label>
               <input
                 id="contact-subject"
                 type="text"
@@ -194,13 +195,13 @@ export default function Contact() {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                placeholder="Objet de votre message"
+                placeholder={t("contact.formSubjectPlaceholder")}
                 className="form-input focus:ring-2 focus:ring-indigo-500/30"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="contact-message" className={`form-label ${isDark ? "text-indigo-300" : "text-indigo-700"}`}>Message</label>
+              <label htmlFor="contact-message" className={`form-label ${isDark ? "text-indigo-300" : "text-indigo-700"}`}>{t("contact.formMessage")}</label>
               <textarea
                 id="contact-message"
                 name="message"
@@ -208,21 +209,21 @@ export default function Contact() {
                 onChange={handleChange}
                 required
                 rows={5}
-                placeholder="Votre message ici…"
+                placeholder={t("contact.formMessagePlaceholder")}
                 className="form-input resize-none focus:ring-2 focus:ring-indigo-500/30"
               />
             </div>
 
             <button type="submit" className="contact-submit-btn flex items-center justify-center gap-2 mt-4" disabled={status === "sending"}>
-              {status === "sending" && <><Loader2 className="w-5 h-5 animate-spin" /> Envoi en cours...</>}
-              {status === "sent" && <><CheckCircle2 className="w-5 h-5 text-emerald-300" /> Message envoyé avec succès !</>}
-              {status === "error" && <><AlertCircle className="w-5 h-5 text-red-300" /> Erreur d'envoi (réessayez)</>}
-              {status === "" && <><Send className="w-5 h-5" /> Envoyer le message</>}
+              {status === "sending" && <><Loader2 className="w-5 h-5 animate-spin" /> {t("contact.sending")}</>}
+              {status === "sent" && <><CheckCircle2 className="w-5 h-5 text-emerald-300" /> {t("contact.sentSuccess")}</>}
+              {status === "error" && <><AlertCircle className="w-5 h-5 text-red-300" /> {t("contact.sentError")}</>}
+              {status === "" && <><Send className="w-5 h-5" /> {t("contact.submitBtn")}</>}
             </button>
 
             {/* Email hint */}
             <p className={`text-[0.8rem] text-center m-0 mt-2 ${isDark ? "text-slate-500" : "text-slate-400"}`}>
-              Votre message sera envoyé à{" "}
+              {t("contact.sentHint")}{" "}
               <a
                 href="mailto:rachidiamine906@gmail.com"
                 className={`no-underline font-semibold transition-colors ${isDark ? "text-indigo-400 hover:text-indigo-300" : "text-indigo-600 hover:text-indigo-800"}`}

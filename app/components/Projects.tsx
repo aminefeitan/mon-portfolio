@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Activity, Play, X } from "lucide-react";
 import { useState, useCallback, useEffect } from "react";
 import { useTheme } from "./ThemeProvider";
+import { useTranslation } from "@/app/lib/i18n";
 
 const GitHubIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
@@ -21,97 +22,19 @@ function getYouTubeId(url: string): string | null {
   return match && match[1].length === 11 ? match[1] : null;
 }
 
-const projects = [
-  {
-    title: "Urbanisme Assistant",
-    logo: "/assistant-urbanisme-v2.png",
-    emoji: "🏙️",
-    description:
-      "Plateforme intelligente d'analyse, de conception et de modélisation territoriale destinée à accompagner les collectivités et les acteurs de l'aménagement.",
-    features: ["Analyse territoriale", "Consultation documentaire", "Chatbot spécialisé", "Aide à la décision"],
-    technologies: ["Next.js", "React", "FastAPI", "MistralAI", "PostgreSQL"],
-    repo: "urbanisme-assistant",
-    videoUrl: "https://youtu.be/gHXkbftqZeI",
-  },
-  {
-    title: "Social Services Platform",
-    logo: "/social-services-v2.png",
-    emoji: "🤝",
-    description:
-      "Plateforme numérique dédiée à la gestion et à l'accès aux services sociaux, avec authentification sécurisée et tableau de bord complet.",
-    features: ["Authentification sécurisée", "Gestion des demandes", "Tableau de bord", "Suivi des dossiers"],
-    technologies: ["Next.js", "React", "TypeScript", "Spring Boot", "Spring Security", "MySQL"],
-    repo: "social-services",
-    videoUrl: "",
-  },
-  {
-    title: "Edu Events",
-    emoji: "🎓",
-    logo: "/edu-events.png",
-    description:
-      "Plateforme de gestion d'événements éducatifs et de billetterie en ligne avec gestion complète des participants.",
-    features: ["Création d'événements", "Billetterie en ligne", "Gestion des participants"],
-    technologies: ["HTML", "CSS", "JavaScript", "PHP", "MariaDB"],
-    repo: "edu-events",
-    videoUrl: "",
-  },
-  {
-    title: "Laundry App",
-    logo: "/laundry-app.jpeg",
-    emoji: "🧺",
-    description:
-      "Application mobile de gestion de blanchisserie permettant le suivi numérique des commandes, scan QR et notifications temps réel.",
-    features: ["Gestion des commandes", "Suivi du traitement", "Scan QR Code", "Notifications Firebase"],
-    technologies: ["Android Java", "Firebase", "Retrofit", "Spring Boot", "MySQL"],
-    repo: "laundry-app",
-    videoUrl: "",
-  },
-  {
-    title: "Chess Analyser",
-    emoji: "♟️",
-    logo: "/chess-analyser.png",
-    description:
-      "Outil d'analyse de parties d'échecs avec moteur Stockfish intégré — détection des meilleures stratégies et statistiques avancées.",
-    features: ["Analyse de parties", "Suggestions de coups", "Statistiques avancées"],
-    technologies: ["JavaFX", "FXML", "Maven", "Stockfish", "SQLite"],
-    repo: "chess-analyser",
-    videoUrl: "",
-  },
-  {
-    title: "Gestion d'Établissement",
-    emoji: "🏫",
-    logo: "/gestion-etablissement.png",
-    description:
-      "Application de bureau pour la gestion des étudiants, des notes et des branches avec génération de relevés de notes en PDF.",
-    features: ["Gestion des étudiants", "Suivi des notes", "Tableau de bord interactif", "Génération de PDF"],
-    technologies: ["Python", "Tkinter", "SQLite", "ReportLab", "Matplotlib"],
-    repo: "gestion-etablissement",
-    videoUrl: "",
-  },
-  {
-    title: "Gym Manager",
-    emoji: "🏋️",
-    logo: "/gym-manager.png",
-    description:
-      "Application de bureau WPF moderne et réactive pour la gestion complète d'une salle de sport (membres, abonnements, revenus).",
-    features: ["Gestion des membres", "Suivi des abonnements", "Tableau de bord", "Architecture Clean"],
-    technologies: ["C#", "WPF", ".NET 10", "SQLite", "EF Core"],
-    repo: "gym_manager",
-    videoUrl: "",
-  },
-];
-
 /* ─── Video Modal Component ──────────────────────────────────── */
 function VideoModal({
   videoUrl,
   projectTitle,
   onClose,
   isDark,
+  demoLabel,
 }: {
   videoUrl: string;
   projectTitle: string;
   onClose: () => void;
   isDark: boolean;
+  demoLabel: string;
 }) {
   const videoId = getYouTubeId(videoUrl);
   // Close on Escape key
@@ -143,7 +66,7 @@ function VideoModal({
             <div className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
             <h3 className={`font-bold text-lg m-0 ${isDark ? "text-white" : "text-slate-900"}`}>{projectTitle}</h3>
             <span className={`text-[0.7rem] font-semibold uppercase tracking-widest ${isDark ? "text-indigo-300" : "text-indigo-600"}`}>
-              Démo vidéo
+              {demoLabel}
             </span>
           </div>
           <button
@@ -175,10 +98,12 @@ function VideoThumbnail({
   videoUrl,
   projectTitle,
   onPlay,
+  demoLabel,
 }: {
   videoUrl: string;
   projectTitle: string;
   onPlay: () => void;
+  demoLabel: string;
 }) {
   const videoId = getYouTubeId(videoUrl);
   if (!videoId) return null;
@@ -211,7 +136,7 @@ function VideoThumbnail({
       {/* Label */}
       <div className="video-label">
         <Play className="w-3 h-3" />
-        <span>Voir la démo</span>
+        <span>{demoLabel}</span>
       </div>
     </button>
   );
@@ -220,6 +145,7 @@ function VideoThumbnail({
 /* ─── Main Projects Component ────────────────────────────────── */
 export default function Projects() {
   const { theme } = useTheme();
+  const { t, isFrench } = useTranslation();
   const isDark = theme === "dark";
 
   const [activeVideo, setActiveVideo] = useState<{
@@ -235,6 +161,107 @@ export default function Projects() {
     setActiveVideo(null);
   }, []);
 
+  const projects = [
+    {
+      title: "Urbanisme Assistant",
+      logo: "/assistant-urbanisme-v2.png",
+      emoji: "🏙️",
+      description: isFrench
+        ? "Plateforme intelligente d'analyse, de conception et de modélisation territoriale destinée à accompagner les collectivités et les acteurs de l'aménagement."
+        : "Intelligent territorial analysis and spatial modeling platform designed to assist municipalities and urban planning stakeholders with AI-driven document insights.",
+      features: isFrench
+        ? ["Analyse territoriale", "Consultation documentaire", "Chatbot spécialisé", "Aide à la décision"]
+        : ["Territorial data analysis", "Regulatory document search", "Specialized AI chatbot", "Decision-making analytics"],
+      technologies: ["Next.js", "React", "FastAPI", "MistralAI", "PostgreSQL"],
+      repo: "urbanisme-assistant",
+      videoUrl: "https://youtu.be/gHXkbftqZeI",
+    },
+    {
+      title: "Social Services Platform",
+      logo: "/social-services-v2.png",
+      emoji: "🤝",
+      description: isFrench
+        ? "Plateforme numérique dédiée à la gestion et à l'accès aux services sociaux, avec authentification sécurisée et tableau de bord complet."
+        : "Comprehensive digital platform for managing and accessing public social welfare services, featuring secure role-based authentication and real-time case tracking dashboards.",
+      features: isFrench
+        ? ["Authentification sécurisée", "Gestion des demandes", "Tableau de bord", "Suivi des dossiers"]
+        : ["Role-based security", "Assistance request workflow", "Administrative dashboard", "Case status tracking"],
+      technologies: ["Next.js", "React", "TypeScript", "Spring Boot", "Spring Security", "MySQL"],
+      repo: "social-services",
+      videoUrl: "",
+    },
+    {
+      title: "Edu Events",
+      emoji: "🎓",
+      logo: "/edu-events.png",
+      description: isFrench
+        ? "Plateforme de gestion d'événements éducatifs et de billetterie en ligne avec gestion complète des participants."
+        : "Educational event management and online ticketing platform with integrated participant registration and attendee tracking.",
+      features: isFrench
+        ? ["Création d'événements", "Billetterie en ligne", "Gestion des participants"]
+        : ["Event publishing", "Online e-ticketing", "Participant management"],
+      technologies: ["HTML", "CSS", "JavaScript", "PHP", "MariaDB"],
+      repo: "edu-events",
+      videoUrl: "",
+    },
+    {
+      title: "Laundry App",
+      logo: "/laundry-app.jpeg",
+      emoji: "🧺",
+      description: isFrench
+        ? "Application mobile de gestion de blanchisserie permettant le suivi numérique des commandes, scan QR et notifications temps réel."
+        : "Mobile laundry services management application with end-to-end order processing, QR code scanning, and real-time push notifications.",
+      features: isFrench
+        ? ["Gestion des commandes", "Suivi du traitement", "Scan QR Code", "Notifications Firebase"]
+        : ["Order processing", "Status updates", "QR code verification", "Firebase push alerts"],
+      technologies: ["Android Java", "Firebase", "Retrofit", "Spring Boot", "MySQL"],
+      repo: "laundry-app",
+      videoUrl: "",
+    },
+    {
+      title: "Chess Analyser",
+      emoji: "♟️",
+      logo: "/chess-analyser.png",
+      description: isFrench
+        ? "Outil d'analyse de parties d'échecs avec moteur Stockfish intégré — détection des meilleures stratégies et statistiques avancées."
+        : "Interactive chess game analysis desktop tool powered by the Stockfish engine — providing deep tactical evaluation, move suggestions, and performance analytics.",
+      features: isFrench
+        ? ["Analyse de parties", "Suggestions de coups", "Statistiques avancées"]
+        : ["Deep move evaluation", "Best continuation engine", "Performance statistics"],
+      technologies: ["JavaFX", "FXML", "Maven", "Stockfish", "SQLite"],
+      repo: "chess-analyser",
+      videoUrl: "",
+    },
+    {
+      title: "Gestion d'Établissement",
+      emoji: "🏫",
+      logo: "/gestion-etablissement.png",
+      description: isFrench
+        ? "Application de bureau pour la gestion des étudiants, des notes et des branches avec génération de relevés de notes en PDF."
+        : "School administration and student records management desktop application featuring automated grade tracking and official PDF report card generation.",
+      features: isFrench
+        ? ["Gestion des étudiants", "Suivi des notes", "Tableau de bord interactif", "Génération de PDF"]
+        : ["Student profiles", "Academic grading", "Interactive analytics", "Automated PDF reports"],
+      technologies: ["Python", "Tkinter", "SQLite", "ReportLab", "Matplotlib"],
+      repo: "gestion-etablissement",
+      videoUrl: "",
+    },
+    {
+      title: "Gym Manager",
+      emoji: "🏋️",
+      logo: "/gym-manager.png",
+      description: isFrench
+        ? "Application de bureau WPF moderne et réactive pour la gestion complète d'une salle de sport (membres, abonnements, revenus)."
+        : "High-performance WPF desktop application for comprehensive gym facility management (member subscriptions, attendance, and revenue analytics).",
+      features: isFrench
+        ? ["Gestion des membres", "Suivi des abonnements", "Tableau de bord", "Architecture Clean"]
+        : ["Membership lifecycle", "Subscription monitoring", "Financial dashboard", "Clean Architecture"],
+      technologies: ["C#", "WPF", ".NET 10", "SQLite", "EF Core"],
+      repo: "gym_manager",
+      videoUrl: "",
+    },
+  ];
+
   return (
     <>
       <section id="projects" className="py-20 md:py-32 relative overflow-hidden section-divider">
@@ -244,9 +271,9 @@ export default function Projects() {
 
         <div className="max-w-[1200px] mx-auto px-5 md:px-8 relative z-10">
           <div className="text-center mb-10 md:mb-16 animate-fade-up">
-            <h2 className="section-title mb-4">Mes Projets</h2>
+            <h2 className="section-title mb-4">{t("projects.title")}</h2>
             <p className={`max-w-2xl mx-auto text-base md:text-lg ${isDark ? "text-slate-400" : "text-slate-500"}`}>
-              Une sélection de mes réalisations, illustrant mon expertise full-stack.
+              {t("projects.subtitle")}
             </p>
           </div>
 
@@ -290,6 +317,7 @@ export default function Projects() {
                       videoUrl={project.videoUrl}
                       projectTitle={project.title}
                       onPlay={() => openVideo(project.videoUrl, project.title)}
+                      demoLabel={t("projects.videoDemoLabel")}
                     />
                   )}
 
@@ -301,7 +329,7 @@ export default function Projects() {
                   {/* Features (Compact list) */}
                   <div className={`flex flex-col gap-2 rounded-xl p-4 border transition-colors ${isDark ? "bg-indigo-500/5 border-indigo-500/10 group-hover:border-indigo-500/20" : "bg-indigo-50/50 border-indigo-200/30 group-hover:border-indigo-300/50"}`}>
                     <p className={`text-[0.72rem] font-bold uppercase tracking-widest mb-1 ${isDark ? "text-slate-400" : "text-slate-500"}`}>
-                      Points Clés
+                      {t("projects.keyPoints")}
                     </p>
                     <ul className="space-y-1.5 m-0 p-0 list-none">
                       {project.features.slice(0, 3).map((f, i) => (
@@ -312,7 +340,7 @@ export default function Projects() {
                       ))}
                       {project.features.length > 3 && (
                         <li className={`text-[0.8rem] italic ${isDark ? "text-slate-500" : "text-slate-400"}`}>
-                          + {project.features.length - 3} autres...
+                          + {project.features.length - 3} {t("projects.andMore")}
                         </li>
                       )}
                     </ul>
@@ -340,7 +368,7 @@ export default function Projects() {
                         className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-300 no-underline ${isDark ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white" : "bg-indigo-50/60 border-indigo-200/50 text-indigo-700 hover:bg-indigo-100 hover:border-indigo-300 hover:text-indigo-900"}`}
                       >
                         <GitHubIcon />
-                        Code
+                        {t("projects.codeBtn")}
                       </a>
                     </div>
                   )}
@@ -358,6 +386,7 @@ export default function Projects() {
           projectTitle={activeVideo.title}
           onClose={closeVideo}
           isDark={isDark}
+          demoLabel={t("projects.videoDemoLabel")}
         />
       )}
     </>
