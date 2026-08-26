@@ -131,6 +131,14 @@ export const fr = {
       english: "Anglais",
       french: "Français",
     },
+    levels: {
+      native: "Langue maternelle",
+      fluent: "Courant",
+      beginner: "Débutant",
+      intermediate: "Intermédiaire",
+      advanced: "Avancé",
+      expert: "Expert",
+    },
   },
   certifications: {
     title: "Certifications",

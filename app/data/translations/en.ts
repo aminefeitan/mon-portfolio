@@ -133,6 +133,14 @@ export const en: typeof fr = {
       english: "English",
       french: "French",
     },
+    levels: {
+      native: "Native",
+      fluent: "Fluent",
+      beginner: "Beginner",
+      intermediate: "Intermediate",
+      advanced: "Advanced",
+      expert: "Expert",
+    },
   },
   certifications: {
     title: "Certifications",

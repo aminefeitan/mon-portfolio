@@ -191,6 +191,21 @@ export default function Experience() {
       technologies: ["Next.js", "React", "FastAPI", "MistralAI", "PostgreSQL"],
     },
     {
+      id: "ensiasd",
+      type: "education",
+      date: "2025 – 2028",
+      title: isFrench ? "Cycle en Ingénierie Logicielle" : "State Engineering Degree in Software Engineering",
+      organization: "ENSIASD Taroudannt",
+      location: isFrench ? "Taroudannt" : "Taroudannt, Morocco",
+      description: isFrench
+        ? [
+            "Formation d'ingénieur d'État spécialisée en conception logicielle, architectures distribuées, bases de données et technologies web modernes.",
+          ]
+        : [
+            "National School of Applied Sciences — In-depth curriculum in software engineering, distributed architectures, database modeling, and modern web frameworks.",
+          ],
+    },
+    {
       id: "stage-sante",
       type: "work",
       date: isFrench ? "Avril – Mai 2025" : "April – May 2025",
@@ -229,21 +244,6 @@ export default function Experience() {
             "Explored organizational IT infrastructure, network topologies, and systems administration.",
           ],
       technologies: ["Python", "Tkinter", "SQLite", "ReportLab"],
-    },
-    {
-      id: "ensiasd",
-      type: "education",
-      date: "2025 – 2028",
-      title: isFrench ? "Cycle en Ingénierie Logicielle" : "State Engineering Degree in Software Engineering",
-      organization: "ENSIASD Taroudannt",
-      location: isFrench ? "Taroudannt" : "Taroudannt, Morocco",
-      description: isFrench
-        ? [
-            "Formation d'ingénieur d'État spécialisée en conception logicielle, architectures distribuées, bases de données et technologies web modernes.",
-          ]
-        : [
-            "National School of Applied Sciences — In-depth curriculum in software engineering, distributed architectures, database modeling, and modern web frameworks.",
-          ],
     },
     {
       id: "dut",
