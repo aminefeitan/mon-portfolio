@@ -16,6 +16,7 @@ export const en: typeof fr = {
     role: "Software Engineering Student",
     description:
       "2nd-year engineering student at ENSIASD Taroudannt, passionate about full-stack development, territorial data analysis, scalable digital platforms, and decision-support systems.",
+    askAi: "Chat with AI",
     viewProjects: "View Projects",
     contactMe: "Get in Touch",
     downloadCV: "Download Resume",
@@ -189,6 +190,9 @@ export const en: typeof fr = {
     sendAria: "Send message",
     closeAria: "Close chat",
     openAria: "Open chat",
-    fabLabel: "Chat",
+    fabLabel: "AI Assistant",
+    teaserText: "Questions about my experience? Chat with my AI!",
+    teaserBadge: "New",
+    dismissTeaserAria: "Dismiss chat invitation",
   },
 };

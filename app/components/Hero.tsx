@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, Download, Send } from "lucide-react";
+import { ArrowRight, Download, Send, Sparkles } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { useTranslation } from "@/app/lib/i18n";
 
@@ -51,6 +51,14 @@ export default function Hero() {
 
             {/* CTAs */}
             <div className="animate-fade-up delay-400 flex flex-row gap-4 flex-wrap">
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent("open-chatbot"))}
+                className="btn-ai-hero group text-base"
+              >
+                <Sparkles className="w-4 h-4 text-amber-300 group-hover:rotate-12 transition-transform" />
+                {t("hero.askAi")}
+              </button>
               <a href="#projects" className="btn-primary group text-base">
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 {t("hero.viewProjects")}
@@ -164,7 +172,15 @@ export default function Hero() {
           </p>
 
           {/* CTAs */}
-          <div className="animate-fade-up delay-400 flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-[440px] mx-auto mb-8">
+          <div className="animate-fade-up delay-400 flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-[520px] mx-auto mb-8">
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("open-chatbot"))}
+              className="btn-ai-hero group text-[0.88rem] w-full sm:w-auto"
+            >
+              <Sparkles className="w-4 h-4 text-amber-300 group-hover:rotate-12 transition-transform" />
+              {t("hero.askAi")}
+            </button>
             <a href="#projects" className="btn-primary group text-[0.88rem] w-full sm:w-auto">
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               {t("hero.viewProjects")}

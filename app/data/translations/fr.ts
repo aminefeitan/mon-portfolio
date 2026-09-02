@@ -14,6 +14,7 @@ export const fr = {
     role: "Élève en Ingénierie Logicielle",
     description:
       "Élève en 2ème année du cycle ingénieur à l'ENSIASD Taroudannt, passionné par le développement web, l'analyse territoriale, les plateformes numériques et les outils d'aide à la décision.",
+    askAi: "Discuter avec l'IA",
     viewProjects: "Voir mes projets",
     contactMe: "Me contacter",
     downloadCV: "Télécharger CV",
@@ -187,6 +188,9 @@ export const fr = {
     sendAria: "Envoyer le message",
     closeAria: "Fermer le chat",
     openAria: "Ouvrir le chat",
-    fabLabel: "Chat",
+    fabLabel: "Assistant IA",
+    teaserText: "Une question sur mon profil ? Discutez avec mon IA !",
+    teaserBadge: "Nouveau",
+    dismissTeaserAria: "Fermer l'invitation de discussion",
   },
 };

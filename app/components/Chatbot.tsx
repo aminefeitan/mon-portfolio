@@ -102,6 +102,7 @@ export default function Chatbot() {
   const isDark = theme === "dark";
 
   const [isOpen, setIsOpen] = useState(false);
+  const [showTeaser, setShowTeaser] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -117,6 +118,29 @@ export default function Chatbot() {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isTyping, scrollToBottom]);
+
+  /* Show teaser popover after delay if not previously dismissed */
+  useEffect(() => {
+    const isDismissed = sessionStorage.getItem("chatbot_teaser_dismissed");
+    if (!isDismissed && !isOpen) {
+      const timer = setTimeout(() => {
+        setShowTeaser(true);
+      }, 2400);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
+  /* Global trigger event for opening chatbot from anywhere (e.g. Hero, Contact) */
+  useEffect(() => {
+    const handleExternalOpen = () => {
+      setIsOpen(true);
+      setShowTeaser(false);
+      sessionStorage.setItem("chatbot_teaser_dismissed", "true");
+    };
+
+    window.addEventListener("open-chatbot", handleExternalOpen);
+    return () => window.removeEventListener("open-chatbot", handleExternalOpen);
+  }, []);
 
   /* Welcome message on first open */
   useEffect(() => {
@@ -192,7 +216,26 @@ export default function Chatbot() {
   };
 
   const toggleChat = () => {
-    setIsOpen((prev) => !prev);
+    setIsOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        setShowTeaser(false);
+        sessionStorage.setItem("chatbot_teaser_dismissed", "true");
+      }
+      return next;
+    });
+  };
+
+  const handleDismissTeaser = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowTeaser(false);
+    sessionStorage.setItem("chatbot_teaser_dismissed", "true");
+  };
+
+  const handleTeaserClick = () => {
+    setIsOpen(true);
+    setShowTeaser(false);
+    sessionStorage.setItem("chatbot_teaser_dismissed", "true");
   };
 
   return (
@@ -291,23 +334,63 @@ export default function Chatbot() {
         </form>
       </div>
 
-      {/* ── Floating Action Button ───────────────────────────── */}
+      {/* ── Teaser Popover Bubble ────────────────────────────── */}
+      {showTeaser && !isOpen && (
+        <div
+          className="chatbot-teaser"
+          onClick={handleTeaserClick}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") handleTeaserClick();
+          }}
+          aria-label={t("chatbot.teaserText")}
+        >
+          <div className="chatbot-teaser-content">
+            <div className="chatbot-teaser-badge">
+              <Sparkles className="w-3 h-3 text-amber-300 animate-spin-slow" />
+              <span>{t("chatbot.teaserBadge")}</span>
+            </div>
+            <p className="chatbot-teaser-text">{t("chatbot.teaserText")}</p>
+          </div>
+          <button
+            onClick={handleDismissTeaser}
+            className="chatbot-teaser-dismiss"
+            aria-label={t("chatbot.dismissTeaserAria")}
+          >
+            <X className="w-3 h-3" />
+          </button>
+          <div className="chatbot-teaser-arrow" />
+        </div>
+      )}
+
+      {/* ── Floating Action Button (FAB) ────────────────────── */}
       <button
         onClick={toggleChat}
         className={`chatbot-fab ${isOpen ? "active" : ""}`}
         aria-label={isOpen ? t("chatbot.closeAria") : t("chatbot.openAria")}
         id="chatbot-toggle"
       >
+        {/* Radar wave rings when unopened to draw attention */}
+        {!isOpen && (
+          <>
+            <span className="chatbot-fab-pulse-ring" />
+            <span className="chatbot-fab-beacon" />
+          </>
+        )}
         <span className="chatbot-fab-glow" />
         <div className="chatbot-fab-icon">
           {isOpen ? (
             <X className="w-5 h-5" />
           ) : (
-            <ChatBotIcon className="w-6 h-6" />
+            <ChatBotIcon className="w-5 h-5 sm:w-6 sm:h-6" />
           )}
         </div>
         {!isOpen && (
-          <span className="chatbot-fab-label">{t("chatbot.fabLabel")}</span>
+          <span className="chatbot-fab-label">
+            <Sparkles className="w-3.5 h-3.5 text-amber-300 inline-block mr-1 opacity-90 hidden sm:inline" />
+            {t("chatbot.fabLabel")}
+          </span>
         )}
       </button>
     </>
