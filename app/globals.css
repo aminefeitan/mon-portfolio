@@ -1218,10 +1218,12 @@ body::before {
   }
 
   .chatbot-fab.active {
-    padding: 0 16px;
-    gap: 0;
-    border-radius: 16px;
+    width: 48px;
     height: 48px;
+    padding: 0;
+    gap: 0;
+    border-radius: 50%;
+    justify-content: center;
     background: var(--th-glass-bg);
     border-color: rgba(99, 102, 241, 0.3);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -2093,22 +2095,30 @@ body::before {
   .chatbot-fab {
     bottom: max(16px, env(safe-area-inset-bottom, 16px));
     right: 16px;
-    height: 46px;
-    padding: 0 16px 0 12px;
-    border-radius: 23px;
-    gap: 8px;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+    gap: 0;
   }
 
   .chatbot-fab-label {
-    display: inline-block;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
+    display: none !important;
   }
 
   .chatbot-fab-pulse-ring {
-    inset: -4px;
-    border-radius: 27px;
+    inset: -5px;
+    border-radius: 50%;
+  }
+
+  .chatbot-fab-glow {
+    border-radius: 50%;
+  }
+
+  .chatbot-fab-beacon {
+    top: 2px;
+    right: 2px;
   }
 
   .chatbot-teaser {

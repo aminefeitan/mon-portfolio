@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { X, Send, User, Sparkles } from "lucide-react";
 import { findBestResponse, ChatResponse } from "@/app/lib/chatbotEngine";
-import { welcomeMessage, initialSuggestions } from "@/app/data/chatbotData";
+import { getWelcomeMessage, getInitialSuggestions } from "@/app/data/chatbotData";
 import { useTheme } from "./ThemeProvider";
 import { useTranslation } from "@/app/lib/i18n";
 
@@ -48,34 +49,16 @@ function formatMessage(text: string, isDark: boolean) {
 }
 
 /* ── Chat Bot Icon ───────────────────────────────────────────── */
-function ChatBotIcon({ className = "w-5 h-5" }: { className?: string }) {
+function ChatBotIcon({ className = "w-5 h-5", priority = false }: { className?: string; priority?: boolean }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className={className}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient id="chatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#818cf8" />
-          <stop offset="100%" stopColor="#06b6d4" />
-        </linearGradient>
-      </defs>
-      {/* Chat bubble body */}
-      <path
-        d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7.5L4 21V4z"
-        fill="url(#chatGrad)"
-        opacity="0.15"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      {/* Typing dots inside bubble */}
-      <circle cx="8.5" cy="11" r="1.2" fill="currentColor" className="chatbot-icon-dot chatbot-icon-dot-1" />
-      <circle cx="12" cy="11" r="1.2" fill="currentColor" className="chatbot-icon-dot chatbot-icon-dot-2" />
-      <circle cx="15.5" cy="11" r="1.2" fill="currentColor" className="chatbot-icon-dot chatbot-icon-dot-3" />
-    </svg>
+    <Image
+      src="/chatbot.png"
+      alt="Assistant IA"
+      width={48}
+      height={48}
+      priority={priority}
+      className={`rounded-full object-contain ${className}`}
+    />
   );
 }
 
@@ -84,7 +67,7 @@ function TypingIndicator() {
   return (
     <div className="chatbot-msg-row bot">
       <div className="chatbot-avatar bot">
-        <ChatBotIcon className="w-3.5 h-3.5" />
+        <ChatBotIcon className="w-4 h-4" />
       </div>
       <div className="chatbot-bubble bot chatbot-typing">
         <span className="typing-dot" />
@@ -98,7 +81,7 @@ function TypingIndicator() {
 /* ── Chatbot Component ───────────────────────────────────────── */
 export default function Chatbot() {
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const isDark = theme === "dark";
 
   const [isOpen, setIsOpen] = useState(false);
@@ -151,9 +134,9 @@ export default function Chatbot() {
         setMessages([
           {
             id: uid(),
-            text: welcomeMessage,
+            text: getWelcomeMessage(locale),
             sender: "bot",
-            suggestions: initialSuggestions.map((s) => s.text),
+            suggestions: getInitialSuggestions(locale).map((s) => s.text),
             timestamp: new Date(),
           },
         ]);
@@ -161,7 +144,25 @@ export default function Chatbot() {
       }, 800);
       return () => clearTimeout(timer);
     }
-  }, [isOpen]);
+  }, [isOpen, locale]);
+
+  /* If locale changes and the conversation only has the initial welcome message, update it to the active language */
+  useEffect(() => {
+    setMessages((prev) => {
+      if (prev.length === 1 && prev[0].sender === "bot") {
+        return [
+          {
+            id: prev[0].id,
+            text: getWelcomeMessage(locale),
+            sender: "bot",
+            suggestions: getInitialSuggestions(locale).map((s) => s.text),
+            timestamp: prev[0].timestamp,
+          },
+        ];
+      }
+      return prev;
+    });
+  }, [locale]);
 
   /* Focus input on open */
   useEffect(() => {
@@ -191,7 +192,7 @@ export default function Chatbot() {
       // Simulate typing delay (300-900ms)
       const delay = Math.min(300 + trimmed.length * 15, 900);
       setTimeout(() => {
-        const response: ChatResponse = findBestResponse(trimmed);
+        const response: ChatResponse = findBestResponse(trimmed, locale);
         const botMsg: Message = {
           id: uid(),
           text: response.text,
@@ -203,7 +204,7 @@ export default function Chatbot() {
         setIsTyping(false);
       }, delay);
     },
-    [isTyping]
+    [isTyping, locale]
   );
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -250,7 +251,7 @@ export default function Chatbot() {
         <div className="chatbot-header">
           <div className="chatbot-header-info">
             <div className="chatbot-header-avatar">
-              <ChatBotIcon className="w-5 h-5" />
+              <ChatBotIcon className="w-8 h-8" priority />
               <span className="chatbot-status-dot" />
             </div>
             <div>
@@ -273,7 +274,7 @@ export default function Chatbot() {
             <div key={msg.id} className={`chatbot-msg-row ${msg.sender}`}>
               {msg.sender === "bot" && (
                 <div className="chatbot-avatar bot">
-                  <ChatBotIcon className="w-3.5 h-3.5" />
+                  <ChatBotIcon className="w-4 h-4" />
                 </div>
               )}
               <div className={`chatbot-bubble ${msg.sender}`}>
@@ -383,12 +384,11 @@ export default function Chatbot() {
           {isOpen ? (
             <X className="w-5 h-5" />
           ) : (
-            <ChatBotIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+            <ChatBotIcon className="w-9 h-9 md:w-8 md:h-8" priority />
           )}
         </div>
         {!isOpen && (
-          <span className="chatbot-fab-label">
-            <Sparkles className="w-3.5 h-3.5 text-amber-300 inline-block mr-1 opacity-90 hidden sm:inline" />
+          <span className="chatbot-fab-label hidden md:inline-flex items-center">
             {t("chatbot.fabLabel")}
           </span>
         )}
