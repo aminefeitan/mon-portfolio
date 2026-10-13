@@ -63,9 +63,9 @@ function VideoModal({
         {/* Header */}
         <div className="video-modal-header">
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
+            <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
             <h3 className={`font-bold text-lg m-0 ${isDark ? "text-white" : "text-slate-900"}`}>{projectTitle}</h3>
-            <span className={`text-[0.7rem] font-semibold uppercase tracking-widest ${isDark ? "text-indigo-300" : "text-indigo-600"}`}>
+            <span className={`text-[0.7rem] font-semibold uppercase tracking-widest ${isDark ? "text-cyan-300" : "text-cyan-600"}`}>
               {demoLabel}
             </span>
           </div>
@@ -266,7 +266,7 @@ export default function Projects() {
     <>
       <section id="projects" className="py-20 md:py-32 relative overflow-hidden section-divider">
         {/* Background orbs */}
-        <div className="orb w-[500px] h-[500px] bg-indigo-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
+        <div className="orb w-[500px] h-[500px] bg-cyan-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
         <div className="orb w-[400px] h-[400px] bg-cyan-500/10 absolute -bottom-[10%] -right-[5%] animate-[pulse-glow_9s_ease-in-out_infinite_2s]" />
 
         <div className="max-w-[1200px] mx-auto px-5 md:px-8 relative z-10">
@@ -284,12 +284,12 @@ export default function Projects() {
                 className="glass flex flex-col group h-full"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-indigo-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-cyan-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
 
                 <div className="p-5 md:p-8 flex flex-col h-full gap-4 md:gap-6">
                   {/* Header */}
                   <div className="flex items-start gap-4">
-                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-3xl shrink-0 overflow-hidden relative transition-all duration-300 ${isDark ? "bg-indigo-500/10 border border-indigo-500/20 group-hover:bg-indigo-500/20" : "bg-indigo-100/60 border border-indigo-200/40 group-hover:bg-indigo-200/60"} group-hover:scale-110`}>
+                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-3xl shrink-0 overflow-hidden relative transition-all duration-300 ${isDark ? "bg-cyan-500/10 border border-cyan-500/20 group-hover:bg-cyan-500/20" : "bg-cyan-100/60 border border-cyan-200/40 group-hover:bg-cyan-200/60"} group-hover:scale-110`}>
                       {project.logo ? (
                         <Image
                           src={project.logo}
@@ -298,14 +298,14 @@ export default function Projects() {
                           className="object-cover"
                         />
                       ) : (
-                        <span className={`drop-shadow-md ${isDark ? "text-indigo-400" : "text-indigo-600"}`}>{project.emoji}</span>
+                        <span className={`drop-shadow-md ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>{project.emoji}</span>
                       )}
                     </div>
                     <div>
-                      <h3 className={`text-xl font-bold m-0 leading-tight transition-colors ${isDark ? "text-white group-hover:text-indigo-300" : "text-slate-900 group-hover:text-indigo-600"}`}>
+                      <h3 className={`text-xl font-bold m-0 leading-tight transition-colors ${isDark ? "text-white group-hover:text-cyan-300" : "text-slate-900 group-hover:text-cyan-600"}`}>
                         {project.title}
                       </h3>
-                      <p className={`text-[0.75rem] mt-1 font-semibold tracking-wider uppercase ${isDark ? "text-indigo-400" : "text-indigo-600"}`}>
+                      <p className={`text-[0.75rem] mt-1 font-semibold tracking-wider uppercase ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>
                         {project.technologies[0]}
                       </p>
                     </div>
@@ -327,14 +327,14 @@ export default function Projects() {
                   </p>
 
                   {/* Features (Compact list) */}
-                  <div className={`flex flex-col gap-2 rounded-xl p-4 border transition-colors ${isDark ? "bg-indigo-500/5 border-indigo-500/10 group-hover:border-indigo-500/20" : "bg-indigo-50/50 border-indigo-200/30 group-hover:border-indigo-300/50"}`}>
+                  <div className={`flex flex-col gap-2 rounded-xl p-4 border transition-colors ${isDark ? "bg-cyan-500/5 border-cyan-500/10 group-hover:border-cyan-500/20" : "bg-cyan-50/50 border-cyan-200/30 group-hover:border-cyan-300/50"}`}>
                     <p className={`text-[0.72rem] font-bold uppercase tracking-widest mb-1 ${isDark ? "text-slate-400" : "text-slate-500"}`}>
                       {t("projects.keyPoints")}
                     </p>
                     <ul className="space-y-1.5 m-0 p-0 list-none">
                       {project.features.slice(0, 3).map((f, i) => (
                         <li key={i} className={`flex items-center gap-2 text-[0.85rem] ${isDark ? "text-slate-300" : "text-slate-700"}`}>
-                          <Activity className={`w-3.5 h-3.5 shrink-0 ${isDark ? "text-indigo-400" : "text-indigo-600"}`} />
+                          <Activity className={`w-3.5 h-3.5 shrink-0 ${isDark ? "text-cyan-400" : "text-cyan-600"}`} />
                           <span className="truncate">{f}</span>
                         </li>
                       ))}
@@ -351,7 +351,7 @@ export default function Projects() {
                     {project.technologies.map((tech, i) => (
                       <span
                         key={i}
-                        className={`px-2.5 py-1 rounded-md text-[0.7rem] font-semibold border ${isDark ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300" : "bg-indigo-50 border-indigo-200/50 text-indigo-700"}`}
+                        className={`px-2.5 py-1 rounded-md text-[0.7rem] font-semibold border ${isDark ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-300" : "bg-cyan-50 border-cyan-200/50 text-cyan-700"}`}
                       >
                         {tech}
                       </span>
@@ -360,12 +360,12 @@ export default function Projects() {
 
                   {/* Repo link */}
                   {project.repo && (
-                    <div className={`flex gap-3 mt-auto pt-4 border-t ${isDark ? "border-indigo-500/10" : "border-indigo-200/30"}`}>
+                    <div className={`flex gap-3 mt-auto pt-4 border-t ${isDark ? "border-cyan-500/10" : "border-cyan-200/30"}`}>
                       <a
                         href={`https://github.com/aminefeitan/${project.repo}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-300 no-underline ${isDark ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300 hover:bg-indigo-500/20 hover:border-indigo-500/40 hover:text-white" : "bg-indigo-50/60 border-indigo-200/50 text-indigo-700 hover:bg-indigo-100 hover:border-indigo-300 hover:text-indigo-900"}`}
+                        className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-300 no-underline ${isDark ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-500/40 hover:text-white" : "bg-cyan-50/60 border-cyan-200/50 text-cyan-700 hover:bg-cyan-100 hover:border-cyan-300 hover:text-cyan-900"}`}
                       >
                         <GitHubIcon />
                         {t("projects.codeBtn")}

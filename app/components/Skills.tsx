@@ -100,8 +100,8 @@ function getTierVisuals(tier: LevelTier, isDark: boolean): TierVisuals {
       };
     case "advanced":
       return {
-        accentColor: "#6366f1",
-        fillBackground: "#6366f1",
+        accentColor: "#06b6d4",
+        fillBackground: "#06b6d4",
         emptyBackgroundLight: "#e2e8f0",
         emptyBackgroundDark: "rgba(255, 255, 255, 0.08)",
       };
@@ -316,8 +316,8 @@ export default function Skills() {
       title: t("skills.categories.techTitle"),
       icon: <Monitor className="w-5 h-5" />,
       description: t("skills.categories.techDesc"),
-      accentFrom: "#6366f1",
-      accentTo: "#818cf8",
+      accentFrom: "#06b6d4",
+      accentTo: "#22d3ee",
       skills: [
         { name: "React", level: 85, logo: techLogos["React"], url: "https://react.dev/" },
         { name: "Next.js", level: 70, logo: techLogos["Next.js"], darkInvert: true, url: "https://nextjs.org/" },
@@ -331,7 +331,7 @@ export default function Skills() {
       title: t("skills.categories.languagesSpokenTitle"),
       icon: <Globe className="w-5 h-5" />,
       description: t("skills.categories.languagesSpokenDesc"),
-      accentFrom: "#a855f7",
+      accentFrom: "#14b8a6",
       accentTo: "#c084fc",
       isSpoken: true,
       skills: [
@@ -345,9 +345,9 @@ export default function Skills() {
   return (
     <section id="skills" className="py-20 md:py-32 relative overflow-hidden section-divider">
       {/* Background orbs */}
-      <div className="orb w-[500px] h-[500px] bg-indigo-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
+      <div className="orb w-[500px] h-[500px] bg-cyan-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
       <div className="orb w-[400px] h-[400px] bg-cyan-500/10 absolute -bottom-[10%] -right-[5%] animate-[pulse-glow_9s_ease-in-out_infinite_2s]" />
-      <div className="orb w-[350px] h-[350px] bg-purple-500/8 absolute top-[40%] right-[5%] animate-[pulse-glow_11s_ease-in-out_infinite_4s]" />
+      <div className="orb w-[350px] h-[350px] bg-teal-500/8 absolute top-[40%] right-[5%] animate-[pulse-glow_11s_ease-in-out_infinite_4s]" />
 
       <div className="max-w-[1200px] mx-auto px-5 md:px-8 relative z-10">
         <div className="text-center mb-10 md:mb-14 animate-fade-up">

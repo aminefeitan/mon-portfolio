@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     <section id="hero" className="min-h-[100dvh] flex items-center justify-center relative pt-24 pb-20 md:pt-32 md:pb-32 lg:pb-40 overflow-hidden section-divider">
       {/* Unified Background orbs */}
-      <div className="orb w-[500px] h-[500px] bg-indigo-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
+      <div className="orb w-[500px] h-[500px] bg-cyan-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
       <div className="orb w-[400px] h-[400px] bg-cyan-500/10 absolute -bottom-[10%] -right-[5%] animate-[pulse-glow_9s_ease-in-out_infinite_2s]" />
 
       {/* Grid Pattern overlay */}
@@ -27,9 +27,9 @@ export default function Hero() {
           {/* Left Text */}
           <div>
             {/* Eyebrow */}
-            <div className={`animate-fade-up inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border mb-7 ${isDark ? "bg-indigo-500/10 border-indigo-500/20" : "bg-indigo-50 border-indigo-200/40"}`}>
-              <span className="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.8)] animate-[pulse-glow_2s_ease-in-out_infinite] inline-block shrink-0" />
-              <span className={`text-[0.82rem] font-semibold tracking-[0.08em] uppercase ${isDark ? "text-indigo-300" : "text-indigo-600"}`}>
+            <div className={`animate-fade-up inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border mb-7 ${isDark ? "bg-cyan-500/10 border-cyan-500/20" : "bg-cyan-50 border-cyan-200/40"}`}>
+              <span className="w-2 h-2 rounded-full bg-cyan-500 shadow-[0_0_10px_rgba(6, 182, 212,0.8)] animate-[pulse-glow_2s_ease-in-out_infinite] inline-block shrink-0" />
+              <span className={`text-[0.82rem] font-semibold tracking-[0.08em] uppercase ${isDark ? "text-cyan-300" : "text-cyan-600"}`}>
                 {t("hero.badge")}
               </span>
             </div>
@@ -40,7 +40,7 @@ export default function Hero() {
             </h1>
 
             {/* Role */}
-            <h2 className={`animate-fade-up delay-200 text-[clamp(1rem,2.5vw,1.8rem)] font-semibold mb-6 leading-relaxed ${isDark ? "text-indigo-400" : "text-indigo-600"}`}>
+            <h2 className={`animate-fade-up delay-200 text-[clamp(1rem,2.5vw,1.8rem)] font-semibold mb-6 leading-relaxed ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>
               {t("hero.role")}
             </h2>
 
@@ -95,7 +95,7 @@ export default function Hero() {
                 />
                 {/* Fallback initials */}
                 <div className="hero-photo-fallback" aria-hidden="true">
-                  <span className={`text-5xl font-black bg-gradient-to-br ${isDark ? "from-white via-indigo-400 to-cyan-500" : "from-slate-900 via-indigo-600 to-cyan-600"} text-transparent bg-clip-text`}>
+                  <span className={`text-5xl font-black bg-gradient-to-br ${isDark ? "from-white via-cyan-400 to-cyan-500" : "from-slate-900 via-cyan-600 to-cyan-600"} text-transparent bg-clip-text`}>
                     AR
                   </span>
                 </div>
@@ -110,7 +110,7 @@ export default function Hero() {
                 { value: t("hero.stats.technologiesValue"), label: t("hero.stats.technologiesLabel") },
               ].map((stat) => (
                 <div key={stat.label} className="glass p-5 flex flex-col items-center justify-center text-center group">
-                  <span className={`text-2xl font-black mb-1 transition-colors ${isDark ? "text-white group-hover:text-indigo-300" : "text-slate-900 group-hover:text-indigo-600"}`}>
+                  <span className={`text-2xl font-black mb-1 transition-colors ${isDark ? "text-white group-hover:text-cyan-300" : "text-slate-900 group-hover:text-cyan-600"}`}>
                     {stat.value}
                   </span>
                   <span className={`text-[0.65rem] uppercase tracking-widest font-semibold leading-tight ${isDark ? "text-slate-400" : "text-slate-500"}`}>
@@ -127,9 +127,9 @@ export default function Hero() {
         {/* ========================================================= */}
         <div className="lg:hidden flex flex-col items-center text-center w-full">
           {/* Eyebrow Badge */}
-          <div className={`animate-fade-up inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border mb-5 ${isDark ? "bg-indigo-500/10 border-indigo-500/20" : "bg-indigo-50 border-indigo-200/40"}`}>
-            <span className="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.8)] animate-[pulse-glow_2s_ease-in-out_infinite] inline-block shrink-0" />
-            <span className={`text-[0.72rem] sm:text-[0.8rem] font-semibold tracking-[0.06em] uppercase ${isDark ? "text-indigo-300" : "text-indigo-600"}`}>
+          <div className={`animate-fade-up inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border mb-5 ${isDark ? "bg-cyan-500/10 border-cyan-500/20" : "bg-cyan-50 border-cyan-200/40"}`}>
+            <span className="w-2 h-2 rounded-full bg-cyan-500 shadow-[0_0_10px_rgba(6, 182, 212,0.8)] animate-[pulse-glow_2s_ease-in-out_infinite] inline-block shrink-0" />
+            <span className={`text-[0.72rem] sm:text-[0.8rem] font-semibold tracking-[0.06em] uppercase ${isDark ? "text-cyan-300" : "text-cyan-600"}`}>
               {t("hero.badge")}
             </span>
           </div>
@@ -148,7 +148,7 @@ export default function Hero() {
                   priority
                 />
                 <div className="hero-photo-circle-fallback" aria-hidden="true">
-                  <span className={`text-4xl font-black bg-gradient-to-br ${isDark ? "from-white via-indigo-400 to-cyan-500" : "from-slate-900 via-indigo-600 to-cyan-600"} text-transparent bg-clip-text`}>
+                  <span className={`text-4xl font-black bg-gradient-to-br ${isDark ? "from-white via-cyan-400 to-cyan-500" : "from-slate-900 via-cyan-600 to-cyan-600"} text-transparent bg-clip-text`}>
                     AR
                   </span>
                 </div>
@@ -162,7 +162,7 @@ export default function Hero() {
           </h1>
 
           {/* Role */}
-          <h2 className={`animate-fade-up delay-300 text-[1rem] sm:text-[1.15rem] font-semibold mb-4 leading-relaxed w-full ${isDark ? "text-indigo-400" : "text-indigo-600"}`}>
+          <h2 className={`animate-fade-up delay-300 text-[1rem] sm:text-[1.15rem] font-semibold mb-4 leading-relaxed w-full ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>
             {t("hero.role")}
           </h2>
 

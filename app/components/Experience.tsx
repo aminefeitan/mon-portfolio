@@ -66,7 +66,7 @@ function TimelineCard({
 
       {/* Card */}
       <div className="glass timeline-card group">
-        <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-indigo-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
+        <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-cyan-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
 
         <div className="p-5 md:p-7 flex flex-col gap-3 relative z-10">
           {/* Date + Type Badge */}
@@ -75,8 +75,8 @@ function TimelineCard({
               className={`inline-flex items-center gap-1.5 text-[0.75rem] font-semibold px-3 py-1 rounded-full border ${
                 isWork
                   ? isDark
-                    ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300"
-                    : "bg-indigo-50 border-indigo-200/50 text-indigo-700"
+                    ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-300"
+                    : "bg-cyan-50 border-cyan-200/50 text-cyan-700"
                   : isDark
                     ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-300"
                     : "bg-cyan-50 border-cyan-200/50 text-cyan-700"
@@ -88,7 +88,7 @@ function TimelineCard({
             <span
               className={`text-[0.7rem] font-bold uppercase tracking-widest ${
                 isWork
-                  ? isDark ? "text-indigo-400" : "text-indigo-600"
+                  ? isDark ? "text-cyan-400" : "text-cyan-600"
                   : isDark ? "text-cyan-400" : "text-cyan-600"
               }`}
             >
@@ -100,8 +100,8 @@ function TimelineCard({
           <h3
             className={`text-lg md:text-xl font-bold m-0 leading-tight transition-colors ${
               isDark
-                ? "text-white group-hover:text-indigo-300"
-                : "text-slate-900 group-hover:text-indigo-600"
+                ? "text-white group-hover:text-cyan-300"
+                : "text-slate-900 group-hover:text-cyan-600"
             }`}
           >
             {entry.title}
@@ -111,7 +111,7 @@ function TimelineCard({
           <div className="flex items-center gap-4 flex-wrap">
             <span
               className={`flex items-center gap-1.5 text-[0.9rem] font-semibold ${
-                isDark ? "text-indigo-400" : "text-indigo-600"
+                isDark ? "text-cyan-400" : "text-cyan-600"
               }`}
             >
               <Building2 className="w-4 h-4" />
@@ -133,7 +133,7 @@ function TimelineCard({
           <ul className={`space-y-1.5 m-0 p-0 list-none text-[0.9rem] leading-relaxed ${isDark ? "text-slate-400" : "text-slate-500"}`}>
             {entry.description.map((d, i) => (
               <li key={i} className="flex gap-2">
-                <span className={`mt-2 w-1.5 h-1.5 rounded-full shrink-0 ${isWork ? "bg-indigo-500/50" : "bg-cyan-500/50"}`} />
+                <span className={`mt-2 w-1.5 h-1.5 rounded-full shrink-0 ${isWork ? "bg-cyan-500/50" : "bg-cyan-500/50"}`} />
                 {d}
               </li>
             ))}
@@ -147,8 +147,8 @@ function TimelineCard({
                   key={tech}
                   className={`px-2.5 py-1 rounded-md text-[0.7rem] font-semibold border ${
                     isDark
-                      ? "bg-indigo-500/10 border-indigo-500/20 text-indigo-300"
-                      : "bg-indigo-50 border-indigo-200/50 text-indigo-700"
+                      ? "bg-cyan-500/10 border-cyan-500/20 text-cyan-300"
+                      : "bg-cyan-50 border-cyan-200/50 text-cyan-700"
                   }`}
                 >
                   {tech}
@@ -276,7 +276,7 @@ export default function Experience() {
   return (
     <section id="experience" className="py-20 md:py-32 relative overflow-hidden section-divider">
       {/* Background orbs */}
-      <div className="orb w-[500px] h-[500px] bg-indigo-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
+      <div className="orb w-[500px] h-[500px] bg-cyan-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
       <div className="orb w-[400px] h-[400px] bg-cyan-500/10 absolute -bottom-[10%] -right-[5%] animate-[pulse-glow_9s_ease-in-out_infinite_2s]" />
 
       <div className="max-w-[900px] mx-auto px-5 md:px-8 relative z-10">

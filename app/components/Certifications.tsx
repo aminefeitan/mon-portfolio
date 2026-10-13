@@ -30,7 +30,7 @@ export default function Certifications() {
     return (
       <section id="certifications" className="py-20 md:py-32 relative overflow-hidden section-divider">
         {/* Background orbs */}
-        <div className="orb w-[500px] h-[500px] bg-indigo-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
+        <div className="orb w-[500px] h-[500px] bg-cyan-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
         <div className="orb w-[400px] h-[400px] bg-cyan-500/10 absolute -bottom-[10%] -right-[5%] animate-[pulse-glow_9s_ease-in-out_infinite_2s]" />
 
         <div className="max-w-[1100px] mx-auto px-5 md:px-8 relative z-10">
@@ -42,8 +42,8 @@ export default function Certifications() {
           </div>
 
           <div className="glass p-8 md:p-12 text-center animate-fade-up delay-100 max-w-[600px] mx-auto group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-indigo-500/20 to-transparent rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 ${isDark ? "bg-indigo-500/10 border border-indigo-500/20 text-indigo-400" : "bg-indigo-100/60 border border-indigo-200/40 text-indigo-600"}`}>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-cyan-500/20 to-transparent rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 ${isDark ? "bg-cyan-500/10 border border-cyan-500/20 text-cyan-400" : "bg-cyan-100/60 border border-cyan-200/40 text-cyan-600"}`}>
               <Award className="w-8 h-8" />
             </div>
             <h3 className={`text-xl font-bold mb-3 ${isDark ? "text-white" : "text-slate-900"}`}>
@@ -61,7 +61,7 @@ export default function Certifications() {
   return (
     <section id="certifications" className="py-20 md:py-32 relative overflow-hidden section-divider">
       {/* Background orbs */}
-      <div className="orb w-[500px] h-[500px] bg-indigo-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
+      <div className="orb w-[500px] h-[500px] bg-cyan-500/10 absolute -top-[5%] -left-[10%] animate-[pulse-glow_7s_ease-in-out_infinite]" />
       <div className="orb w-[400px] h-[400px] bg-cyan-500/10 absolute -bottom-[10%] -right-[5%] animate-[pulse-glow_9s_ease-in-out_infinite_2s]" />
 
       <div className="max-w-[1100px] mx-auto px-5 md:px-8 relative z-10">
@@ -79,22 +79,22 @@ export default function Certifications() {
               className="glass flex flex-col group h-full animate-fade-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-indigo-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
+              <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-cyan-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
 
               <div className="p-5 md:p-7 flex flex-col h-full gap-4 relative z-10">
                 {/* Icon */}
-                <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl shrink-0 transition-all duration-300 group-hover:scale-110 ${isDark ? "bg-indigo-500/10 border border-indigo-500/20" : "bg-indigo-100/60 border border-indigo-200/40"}`}>
+                <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl shrink-0 transition-all duration-300 group-hover:scale-110 ${isDark ? "bg-cyan-500/10 border border-cyan-500/20" : "bg-cyan-100/60 border border-cyan-200/40"}`}>
                   {cert.icon}
                 </div>
 
                 {/* Title */}
-                <h3 className={`text-lg font-bold m-0 leading-tight transition-colors ${isDark ? "text-white group-hover:text-indigo-300" : "text-slate-900 group-hover:text-indigo-600"}`}>
+                <h3 className={`text-lg font-bold m-0 leading-tight transition-colors ${isDark ? "text-white group-hover:text-cyan-300" : "text-slate-900 group-hover:text-cyan-600"}`}>
                   {cert.title}
                 </h3>
 
                 {/* Issuer + Date */}
                 <div className="flex items-center gap-3 flex-wrap">
-                  <span className={`text-[0.85rem] font-semibold ${isDark ? "text-indigo-400" : "text-indigo-600"}`}>
+                  <span className={`text-[0.85rem] font-semibold ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>
                     {cert.issuer}
                   </span>
                   {cert.date && (
@@ -110,7 +110,7 @@ export default function Certifications() {
                     href={cert.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`mt-auto inline-flex items-center gap-2 text-[0.85rem] font-semibold no-underline transition-colors ${isDark ? "text-indigo-400 hover:text-indigo-300" : "text-indigo-600 hover:text-indigo-800"}`}
+                    className={`mt-auto inline-flex items-center gap-2 text-[0.85rem] font-semibold no-underline transition-colors ${isDark ? "text-cyan-400 hover:text-cyan-300" : "text-cyan-600 hover:text-cyan-800"}`}
                   >
                     <ExternalLink className="w-4 h-4" />
                     Voir le certificat

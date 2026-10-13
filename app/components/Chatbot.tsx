@@ -29,7 +29,7 @@ function renderMarkdown(text: string, isDark: boolean) {
   return parts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return (
-        <strong key={i} className={`font-semibold ${isDark ? "text-indigo-300" : "text-indigo-600"}`}>
+        <strong key={i} className={`font-semibold ${isDark ? "text-cyan-300" : "text-cyan-600"}`}>
           {part.slice(2, -2)}
         </strong>
       );

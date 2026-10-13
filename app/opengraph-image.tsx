@@ -19,9 +19,9 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "space-between",
-          backgroundColor: "#07080f",
+          backgroundColor: "#000000",
           backgroundImage:
-            "radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.25) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.2) 0%, transparent 50%)",
+            "radial-gradient(circle at 25% 25%, rgba(6, 182, 212, 0.25) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.2) 0%, transparent 50%)",
           padding: "60px 80px",
           fontFamily: "sans-serif",
         }}
@@ -39,7 +39,7 @@ export default async function Image() {
               width: "48px",
               height: "48px",
               borderRadius: "14px",
-              background: "linear-gradient(135deg, #6366f1, #06b6d4)",
+              background: "linear-gradient(135deg, #06b6d4, #06b6d4)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -58,7 +58,7 @@ export default async function Image() {
               letterSpacing: "-0.5px",
             }}
           >
-            Amine Rachidi<span style={{ color: "#6366f1" }}>.</span>
+            Amine Rachidi<span style={{ color: "#06b6d4" }}>.</span>
           </span>
         </div>
 
@@ -71,9 +71,9 @@ export default async function Image() {
               gap: "10px",
               padding: "8px 18px",
               borderRadius: "99px",
-              backgroundColor: "rgba(99, 102, 241, 0.15)",
-              border: "1px solid rgba(99, 102, 241, 0.3)",
-              color: "#a5b4fc",
+              backgroundColor: "rgba(6, 182, 212, 0.15)",
+              border: "1px solid rgba(6, 182, 212, 0.3)",
+              color: "#67e8f9",
               fontSize: "16px",
               fontWeight: 600,
               alignSelf: "flex-start",
@@ -84,7 +84,7 @@ export default async function Image() {
                 width: "8px",
                 height: "8px",
                 borderRadius: "50%",
-                backgroundColor: "#6366f1",
+                backgroundColor: "#06b6d4",
               }}
             />
             ENSIASD Taroudannt · 2ème Année
@@ -104,7 +104,7 @@ export default async function Image() {
             <br />
             <span
               style={{
-                background: "linear-gradient(90deg, #818cf8, #22d3ee)",
+                background: "linear-gradient(90deg, #22d3ee, #22d3ee)",
                 backgroundClip: "text",
                 color: "transparent",
               }}
@@ -133,7 +133,7 @@ export default async function Image() {
             alignItems: "center",
             justifyContent: "space-between",
             width: "100%",
-            borderTop: "1px solid rgba(99, 102, 241, 0.2)",
+            borderTop: "1px solid rgba(6, 182, 212, 0.2)",
             paddingTop: "24px",
           }}
         >
